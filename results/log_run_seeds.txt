@@ -1,0 +1,17 @@
+[seed run 0] training-data seed=1
+  [constrained] RRE=0.3720  extrap RRE=0.3855  max|chi|=0.500  finite=True  sens=0.0767
+  [unconstrained] RRE=0.3407  extrap RRE=0.4701  max|chi|=0.500  finite=True  sens=0.0770
+  [unc_projoff_fboff] RRE=0.3413  extrap RRE=0.6549  max|chi|=1.288  finite=True  sens=0.0775
+[seed run 1] training-data seed=11
+  [constrained] RRE=0.3887  extrap RRE=0.4186  max|chi|=0.500  finite=True  sens=0.0791
+  [unconstrained] RRE=0.3382  extrap RRE=0.4390  max|chi|=0.500  finite=True  sens=0.0810
+  [unc_projoff_fboff] RRE=0.3464  extrap RRE=0.8089  max|chi|=0.948  finite=True  sens=0.0743
+[seed run 2] training-data seed=12
+  [constrained] RRE=0.3734  extrap RRE=0.3852  max|chi|=0.500  finite=True  sens=0.0797
+  [unconstrained] RRE=0.3397  extrap RRE=0.4722  max|chi|=0.500  finite=True  sens=0.0809
+  [unc_projoff_fboff] RRE=0.3562  extrap RRE=0.5069  max|chi|=0.812  finite=True  sens=0.0758
+== summary ==
+  constrained {"rre_K8": {"mean": 0.3780383765697479, "std": 0.007552865749544597, "n": 3}, "noise_sens_20dB": {"mean": 0.07854089885950089, "std": 0.0012930177477403495, "n": 3}, "extrap_rre": {"mean": 0.396439125140508, "n": 3}, "extrap_finite_count": "3/3", "extrap_maxabs_chi_max": 0.5, "beta0_measured": 0.8303}
+  unconstrained {"rre_K8": {"mean": 0.33952013154824573, "std": 0.0010116457710948206, "n": 3}, "noise_sens_20dB": {"mean": 0.07960955053567886, "std": 0.0018422974003652055, "n": 3}, "extrap_rre": {"mean": 0.46043957273165387, "n": 3}, "extrap_finite_count": "3/3", "extrap_maxabs_chi_max": 0.5, "beta0_measured": 0.8303}
+  unc_projoff_fboff {"rre_K8": {"mean": 0.34799229602018994, "std": 0.006161780550535763, "n": 3}, "noise_sens_20dB": {"mean": 0.07582979649305344, "std": 0.0013050031624952964, "n": 3}, "extrap_rre": {"mean": 0.6569396654764811, "n": 3}, "extrap_finite_count": "3/3", "extrap_maxabs_chi_max": 1.2875, "beta0_measured": 2.1381}
+[seeds done] 1564s

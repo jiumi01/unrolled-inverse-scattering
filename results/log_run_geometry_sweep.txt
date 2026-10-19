@@ -1,0 +1,28 @@
+[env] ||Gb||2=1.6606 device=cuda
+[data] ell: train nz=0.326 maxchi=0.499 | test nz=0.343 maxchi=0.499
+[data] rect: train nz=0.312 maxchi=0.499 | test nz=0.318 maxchi=0.499
+[data] stripe: train nz=0.340 maxchi=0.500 | test nz=0.314 maxchi=0.499
+[data] blob: train nz=0.304 maxchi=0.500 | test nz=0.328 maxchi=0.500
+[geom] mask(ell) == mask(rect): False
+[geom] mask(ell) == mask(stripe): False
+[geom] mask(rect) == mask(stripe): False
+[geom] mask(blob) == mask(ell): False
+[geom] mask(blob) == mask(rect): False
+[geom] mask(blob) == mask(stripe): False
+[train] rect family, K=8, constrained, 40 epochs (bs16, lr1e-3)...
+    ep000 loss= 0.01250
+    ep010 loss= 0.00874
+    ep020 loss= 0.00865
+    ep030 loss= 0.00857
+    ep039 loss= 0.00846
+[train] done -> results/ckpt_rect_K8.pt
+[model] loaded existing ellipse-trained ckpt_constrained_K8.pt
+[rect_model] ell: beta0_meas=0.8286 rre_K8=0.4263 | D=8 rre=0.4263 D=100 rre=0.4714 maxchi=0.500 maxw=0.636
+[rect_model] rect: beta0_meas=0.8293 rre_K8=0.3877 | D=8 rre=0.3877 D=100 rre=0.4279 maxchi=0.500 maxw=0.640
+[rect_model] stripe: beta0_meas=0.8295 rre_K8=0.4790 | D=8 rre=0.4790 D=100 rre=0.5310 maxchi=0.500 maxw=0.624
+[rect_model] blob: beta0_meas=0.8302 rre_K8=0.5014 | D=8 rre=0.5014 D=100 rre=0.5238 maxchi=0.500 maxw=0.619
+[ell_model] ell: beta0_meas=0.8286 rre_K8=0.3731 | D=8 rre=0.3731 D=100 rre=0.3898 maxchi=0.500 maxw=0.672
+[ell_model] rect: beta0_meas=0.8293 rre_K8=0.4333 | D=8 rre=0.4333 D=100 rre=0.4440 maxchi=0.500 maxw=0.643
+[ell_model] stripe: beta0_meas=0.8295 rre_K8=0.5028 | D=8 rre=0.5028 D=100 rre=0.5126 maxchi=0.500 maxw=0.665
+[ell_model] blob: beta0_meas=0.8302 rre_K8=0.5353 | D=8 rre=0.5353 D=100 rre=0.5402 maxchi=0.500 maxw=0.643
+[done] total 233s -> results/geometry_sweep.json

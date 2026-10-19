@@ -1,0 +1,29 @@
+=== L0) layer_fixed vs UnrolledISP.layer: dchi=0.00e+00 dw=0.00e+00 (alpha=0.250 gamma=0.300) ===
+=== A) physics core only (alpha=gamma=0.50, no correction) ===
+  A(chi-block)=0.844127 (power 0.844147)   D(w-block)=0.608679 (power 0.607735)   full=1.869351 (power 1.869218)
+  Thm field bound on D: 0.915159  -> respected: True
+=== B/C) constrained (K=8 checkpoint) ===
+   layer 0: Lip(H)=0.133525 (power 0.133488)  composite=1.848974 (power 1.848921)
+   layer 1: Lip(H)=0.107933 (power 0.107463)  composite=1.853495 (power 1.853410)
+   layer 2: Lip(H)=0.088105 (power 0.088105)  composite=1.855844 (power 1.855586)
+   layer 3: Lip(H)=0.110081 (power 0.110004)  composite=1.859425 (power 1.859219)
+   layer 4: Lip(H)=0.171340 (power 0.171299)  composite=1.866073 (power 1.865959)
+   layer 5: Lip(H)=0.201346 (power 0.201346)  composite=1.879941 (power 1.880054)
+   layer 6: Lip(H)=0.258786 (power 0.258786)  composite=1.889603 (power 1.889631)
+   layer 7: Lip(H)=0.321232 (power 0.321212)  composite=1.879424 (power 1.879341)
+  pure Lip(H_k) max = 0.321232 (power 0.321212)  (eps_bar=0.030, budget respected: False)
+  learned alpha=[0.305, 0.316, 0.316, 0.313, 0.308, 0.305, 0.302, 0.306]
+  learned gamma=[0.263, 0.219, 0.221, 0.239, 0.259, 0.247, 0.224, 0.212]
+=== B/C) unconstrained (K=8 checkpoint) ===
+   layer 0: Lip(H)=0.883808 (power 0.883709)  composite=1.841284 (power 1.841287)
+   layer 1: Lip(H)=0.682079 (power 0.680898)  composite=1.765721 (power 1.765359)
+   layer 2: Lip(H)=0.652907 (power 0.652901)  composite=1.924590 (power 1.915924)
+   layer 3: Lip(H)=0.861276 (power 0.859617)  composite=1.926773 (power 1.926657)
+   layer 4: Lip(H)=1.727331 (power 1.726378)  composite=2.245926 (power 2.245621)
+   layer 5: Lip(H)=0.831303 (power 0.831253)  composite=1.871771 (power 1.871694)
+   layer 6: Lip(H)=1.147511 (power 1.147511)  composite=2.200884 (power 2.199151)
+   layer 7: Lip(H)=1.300772 (power 1.281232)  composite=2.041224 (power 2.034948)
+  pure Lip(H_k) max = 1.727331 (power 1.726378)  (eps_bar=0.030, budget respected: False)
+  learned alpha=[0.281, 0.277, 0.274, 0.277, 0.273, 0.287, 0.289, 0.236]
+  learned gamma=[0.255, 0.297, 0.315, 0.328, 0.325, 0.319, 0.307, 0.309]
+[gain decomp done] 521s

@@ -1,0 +1,151 @@
+{
+ "config": {
+  "K": 8,
+  "epochs": 40,
+  "seeds": [
+   1,
+   11,
+   12
+  ],
+  "variants": [
+   "constrained",
+   "unconstrained",
+   "unc_projoff_fboff"
+  ],
+  "gb_norm2": 1.660634872416547,
+  "beta0": 0.8303174362082735,
+  "device": "cuda",
+  "test_set": "fixed seed=2, 100 samples",
+  "note": "r=0 reuses the main protocol's TRAINING-DATA seed (1), so the dataset is identical to the main run; the initialisation seed deliberately differs (100+r here against 1234 in the main pipeline), so the r=0 numbers measure the init/batch-order component of variability on identical data. r=1,2 change the training-data seed as well, so across the three repeats the reported spread is the total protocol variability, not one source of it.",
+  "note_source": "run_seeds.py::SEED_NOTE (re-stamped by code/_restamp_seeds_note.py; the measured fields are untouched, this is metadata only)"
+ },
+ "runs": {
+  "r0_constrained": {
+   "variant": "constrained",
+   "config": {
+    "mode": "constrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 1,
+   "repeat": 0,
+   "rre_K8": 0.40180225670337677,
+   "extrap": {
+    "rre": 0.44435352087020874,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.07795729488134384
+  },
+  "r0_unconstrained": {
+   "variant": "unconstrained",
+   "config": {
+    "mode": "unconstrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 1,
+   "repeat": 0,
+   "rre_K8": 0.37596260011196136,
+   "extrap": {
+    "rre": 0.4960406422615051,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.07499732822179794
+  },
+  "r0_unc_projoff_fboff": {
+   "variant": "unc_projoff_fboff",
+   "config": {
+    "mode": "unconstrained",
+    "proj": false,
+    "featbound": false,
+    "eps_bar": 0.03
+   },
+   "seed": 1,
+   "repeat": 0,
+   "rre_K8": 0.3796370327472687,
+   "extrap": {
+    "rre": 0.7189574837684631,
+    "maxabs_chi": 0.7636526823043823,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.08176786452531815
+  },
+  "r1_constrained": {
+   "variant": "constrained",
+   "config": {
+    "mode": "constrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 11,
+   "repeat": 1,
+   "rre_K8": 0.4039887338876724,
+   "extrap": {
+    "rre": 0.447620153427124,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.08094300329685211
+  },
+  "r1_unconstrained": {
+   "variant": "unconstrained",
+   "config": {
+    "mode": "unconstrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 11,
+   "repeat": 1,
+   "rre_K8": 0.3751973807811737,
+   "extrap": {
+    "rre": 0.5306864976882935,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.07554135471582413
+  },
+  "r1_unc_projoff_fboff": {
+   "variant": "unc_projoff_fboff",
+   "config": {
+    "mode": "unconstrained",
+    "proj": false,
+    "featbound": false,
+    "eps_bar": 0.03
+   },
+   "seed": 11,
+   "repeat": 1,
+   "rre_K8": 0.3722722828388214,
+   "extrap": {
+    "rre": 0.5576933026313782,
+    "maxabs_chi": 1.1140738725662231,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.07517356425523758
+  },
+  "r2_constrained": {
+   "variant": "constrained",
+   "config": {
+    "mode": "constrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 12,
+   "repeat": 2,
+   "rre_K8": 0.4048730731010437,
+   "extrap": {
+    "rre": 0.44075384736061096,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.08287634700536728
+  }
+ },
+ "archive_note": "VERBATIM pre-round-4 copy of results/seeds.json (7 completed repeats, no summary key), kept as the other side of the identical-seed reproducibility comparison in results/repro_floor.json. Its config.note is the OLD text and is superseded: that note claimed the r=0 gap to the main pipeline 'is itself the init/batch-order component', which the reproducibility floor falsifies (an identical-seed re-run moves the K=8 RRE by more than that gap). The corrected reading lives in run_seeds.py:SEED_NOTE and in the paper. Nothing measured in this file has been altered."
+}

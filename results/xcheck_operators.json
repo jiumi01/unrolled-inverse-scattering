@@ -1,0 +1,26 @@
+{
+ "batch": 16,
+ "alpha": 0.5,
+ "gamma": 0.5,
+ "theta": 1.0,
+ "dtype": "float64",
+ "device": "cpu",
+ "map_rel_diff_random_z": 0.0,
+ "state_flat_diff": 0.0,
+ "sigma_make_f": {
+  "lanczos": 3.1234350992134585,
+  "power": 3.1234467580233476,
+  "solver": "eigsh",
+  "matvecs": 44
+ },
+ "sigma_make_flatten": {
+  "lanczos": 3.1234350992134585,
+  "power": 3.1234467580233476,
+  "solver": "eigsh",
+  "matvecs": 44
+ },
+ "sigma_rel_gap": 0.0,
+ "state_init_vs_born_ls_15": 1.609327222175878e-05,
+ "verdict": "constructions agree",
+ "wallclock_s": 133.51866102218628
+}

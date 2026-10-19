@@ -1,0 +1,35 @@
+=== [L0] instrument validation ===
+  [check1] linear map: lanczos=1.7809702680 svd=1.7809704542 power=1.7800362110 rel.err=1.05e-07
+=== [L1] physics core blocks, alpha=gamma=0.50 ===
+    block A    sigma=1.174776 (power 1.174809)  matvecs=44  eigsh
+    block B    sigma=2.789142 (power 2.789152)  matvecs=44  eigsh
+    block C    sigma=1.600674 (power 1.599600)  matvecs=124  eigsh
+    block D    sigma=0.617569 (power 0.617194)  matvecs=84  eigsh
+    block full sigma=3.123435 (power 3.123431)  matvecs=44  eigsh
+  [check2] sigma_max(C): closed form=1.600674  Gram=1.600674  rel.err=0.00e+00  lanczos=1.600674
+  [check3] sigma_full=3.1234 >= max block=2.7891  -> True
+  max|E|=1.4436  max_r||E_.r||2=3.2013  ratio=2.2177  alpha_c=0.3124
+  sigma_D=0.6176 <= thm bound 0.9152 -> True
+=== [L2] alpha=gamma sweep (proved threshold) ===
+  alpha=0.050  sigma=1.0696  proved_lb=0.1601  
+  alpha=0.100  sigma=1.1563  proved_lb=0.3201  
+  alpha=0.200  sigma=1.3071  proved_lb=0.6403  
+  alpha=0.317  sigma=1.8442  proved_lb=1.0148  PROVED>1
+  alpha=0.400  sigma=1.7560  proved_lb=1.2805  PROVED>1
+  alpha=0.500  sigma=3.1234  proved_lb=1.6007  PROVED>1
+  alpha=0.750  sigma=2.4407  proved_lb=2.4010  PROVED>1
+  alpha=1.000  sigma=3.5285  proved_lb=3.2013  PROVED>1
+=== [L2b] Born-contrast variant (forces B=0 by linearising the data misfit) ===
+    block A    sigma=0.500000 (power 0.500000)  matvecs=44  eigsh
+    block B    sigma=0.000000 (power 0.000000)  matvecs=2  zero-operator
+    block C    sigma=1.600674 (power 1.597629)  matvecs=124  eigsh
+    block D    sigma=0.617569 (power 0.616979)  matvecs=84  eigsh
+    block full sigma=1.739187 (power 1.720271)  matvecs=184  eigsh
+  sigma_B=0.000e+00  sigma_C=1.6007  sigma_full=1.7392  (non-Born C=1.6007, full=3.1234)
+=== [L3] noise gain Lambda ===
+  ||Gs||2=0.0883  lambda_min=9.411e-06  max|E|=1.4436
+  Lambda: measured=1.1748  constructive(field part)=6770.7  ratio=5763.4
+=== [L4/L5] K=8 cyclic composite, trained checkpoints ===
+  [constrained] sigma_comp=2.1858  rho=0.3385  rho_chi=0.2513  M_J~4.7777  gap=6.458  (rho_chi<1: True)
+  [unconstrained] sigma_comp=47.9351  rho=29.5380  rho_chi=24.3954  M_J~2297.7182  gap=1.623  (rho_chi<1: False)
+[audit done] 1483s

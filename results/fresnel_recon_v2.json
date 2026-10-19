@@ -1,0 +1,110 @@
+[
+ {
+  "target": "FoamDielExt",
+  "freq": 2.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.2618863393001204,
+  "r_true": 0.1175070146382854,
+  "mse": 0.009261241904283277,
+  "max_chi_on": 1.3077759472405948,
+  "max_w_on": 0.038801744736259275,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamDielInt",
+  "freq": 2.0,
+  "alpha": 0.25,
+  "gamma": 0.3,
+  "r_net": 0.14222916738876196,
+  "r_true": 0.08869044032080217,
+  "mse": 0.011204994150728353,
+  "max_chi_on": 1.5284046197501302,
+  "max_w_on": 0.03984463087147229,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamTwinDiel",
+  "freq": 2.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.2385577914489699,
+  "r_true": 0.087257461412839,
+  "mse": 0.017755464041409996,
+  "max_chi_on": 1.3292557347850291,
+  "max_w_on": 0.042070688418712386,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamDielExt",
+  "freq": 3.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.16220087835486216,
+  "r_true": 0.09873440560856814,
+  "mse": 0.02403890973007987,
+  "max_chi_on": 2.4905163891233215,
+  "max_w_on": 0.06956453453708175,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamDielInt",
+  "freq": 3.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.08581857270587934,
+  "r_true": 0.0939625367935773,
+  "mse": 0.02556102002235352,
+  "max_chi_on": 2.250527940172826,
+  "max_w_on": 0.04963037792011924,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamTwinDiel",
+  "freq": 3.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.1482444293869907,
+  "r_true": 0.08706868642330444,
+  "mse": 0.042524369110398995,
+  "max_chi_on": 2.4250588387137233,
+  "max_w_on": 0.06508943735451887,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamDielExt",
+  "freq": 4.0,
+  "alpha": 0.25,
+  "gamma": 0.3,
+  "r_net": 0.3180860629849697,
+  "r_true": 0.09820501798930849,
+  "mse": 0.08101220299279824,
+  "max_chi_on": 1.99106225729555,
+  "max_w_on": 0.08123170707401751,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamDielInt",
+  "freq": 4.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.07397825517195547,
+  "r_true": 0.101435223086878,
+  "mse": 0.04251305795871165,
+  "max_chi_on": 2.335238645225119,
+  "max_w_on": 0.043671036109466446,
+  "diverges_off": false
+ },
+ {
+  "target": "FoamTwinDiel",
+  "freq": 4.0,
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "r_net": 0.5019442827207447,
+  "r_true": 0.10806331209977556,
+  "mse": 0.1605931028339315,
+  "max_chi_on": 2.5,
+  "max_w_on": 0.09273056160027783,
+  "diverges_off": false
+ }
+]

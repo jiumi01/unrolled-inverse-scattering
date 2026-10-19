@@ -1,0 +1,12 @@
+[env] device=cuda batch=16 alpha=gamma=0.50
+=== n_cg=15 ===
+  [n_cg=15 constrained] layer 0 composite sigma_max=3.0915
+  [n_cg=15 constrained] layer 1 composite sigma_max=3.1908
+  [n_cg=15 constrained] layer 2 composite sigma_max=3.1827
+  [n_cg=15 constrained] layer 3 composite sigma_max=3.1144
+  [n_cg=15 constrained] layer 4 composite sigma_max=3.1013
+  [n_cg=15 constrained] layer 5 composite sigma_max=3.0847
+  [n_cg=15 constrained] layer 6 composite sigma_max=3.0786
+  [n_cg=15 constrained] layer 7 composite sigma_max=3.1920
+  [n_cg=15] core=3.2193  composite_max=3.1920  (composite<core? True)
+[done] 82s -> results/gain_decomp_pair.json

@@ -1,0 +1,22 @@
+Deep unrolling of classical iterative solvers is a leading design principle for electromagnetic
+inverse scattering: SOM-Net, unrolled contrast-source architectures and the Neural Born Iterative
+Method replace classical update rules by learned operators and report consistent empirical gains.
+None supplies a layer-level sufficient condition, a fixed-point characterisation or an error bound;
+we supply them and identify the structural obstruction behind the gap. Casting each layer as a
+physics iteration perturbed by a learned correction, we prove three results. (i) \emph{Impossibility}:
+for the faithful Born/contrast-source composite the bilinear coupling $\chi\odot E$ makes a block of
+the layer Jacobian \emph{exactly} $\theta\alpha\,\mathrm{diag}(E)$, whence
+$\sigma_{\max}(J)\ge\theta\alpha\mathcal{E}$ with $\mathcal{E}$ the peak per-cell field energy, a
+bound the full layer Jacobian shares; the layer is \emph{provably} non-contractive above the
+explicit threshold $\alpha_c=(\theta\mathcal{E})^{-1}$, so global Euclidean contraction is
+unattainable at the measured step sizes and stability must be layered.
+(ii) \emph{Certified boundedness}: the weak-scattering condition
+$\beta_0=\chi_{\max}\norm{\mathbf{G}_b}_2<1$ makes the damped field subsystem a contraction for
+\emph{every} $\alpha\in(0,1]$; with a nonexpansive physics-prior projection it confines the rollout
+to an \emph{explicit compact set} at any depth, so extrapolation cannot diverge.
+(iii) \emph{Fidelity and stability, delimited}: we give an exact finite-depth noise accounting with
+the non-normal correction $\kappa_2(V)$ that a naive $\Lambda/(1-\rho)$ omits --- and a proof that
+the measured transient $M_J$ cannot replace it --- and show that the geometric bounds hold only
+\emph{conditionally}, their hypotheses failing in our own measurements. Ablations over $800$ layers
+isolate each ingredient; on 2-D TM MoM scattering a certified $K{=}8$ network matches the
+classical iteration at $K{=}100$.

@@ -1,0 +1,11 @@
+{
+ "gb_op_norm": 1.6606348724165476,
+ "chi_max_train": 0.4989314079284668,
+ "device": "cuda",
+ "chi_max_box": 0.5,
+ "eps_bar_default": 0.03,
+ "featbound": true,
+ "proj_default": true,
+ "cert_beta_bound": 0.8303174362082738,
+ "cert_beta_bound_realized": 0.828542894949898
+}

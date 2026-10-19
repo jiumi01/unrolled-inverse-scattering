@@ -1,0 +1,105 @@
+{
+  "n_examples": 4,
+  "data_range": 0.45138758420944214,
+  "protocol": "the 4 examples displayed in Fig. images, i.e. chi_te_d[0:4]; these are NOT the full test set (100) over which every RRE in the manuscript is computed -- see imgq_protocol.json",
+  "ssim_impl": "gaussian sigma=1.5 truncate=3.5, K1=0.01 K2=0.02, mean over pixels",
+  "psnr_impl": "10log10(data_range^2/MSE)",
+  "rows": {
+    "classical8": {
+      "label": "Classical, K=8",
+      "psnr_per_example": [
+        16.1901,
+        14.1094,
+        17.8435,
+        14.3526
+      ],
+      "ssim_per_example": [
+        0.372767,
+        0.394489,
+        0.363069,
+        0.313177
+      ],
+      "rel_l2_per_example": [
+        0.328366,
+        0.370238,
+        0.41794,
+        0.354487
+      ],
+      "psnr_mean": 15.623888844942527,
+      "ssim_mean": 0.36087557579662516,
+      "rel_l2_mean": 0.36775771734781126
+    },
+    "classical50": {
+      "label": "Classical, K=50",
+      "psnr_per_example": [
+        16.1901,
+        14.1091,
+        17.8478,
+        14.3526
+      ],
+      "ssim_per_example": [
+        0.372754,
+        0.394871,
+        0.36429,
+        0.313138
+      ],
+      "rel_l2_per_example": [
+        0.328365,
+        0.370249,
+        0.41773,
+        0.354486
+      ],
+      "psnr_mean": 15.624919665787052,
+      "ssim_mean": 0.36126318908154165,
+      "rel_l2_mean": 0.3677078195333968
+    },
+    "unconstrained": {
+      "label": "Unconstrained, K=8",
+      "psnr_per_example": [
+        18.7877,
+        17.8454,
+        20.4706,
+        17.9449
+      ],
+      "ssim_per_example": [
+        0.746621,
+        0.817613,
+        0.82438,
+        0.768069
+      ],
+      "rel_l2_per_example": [
+        0.243488,
+        0.240813,
+        0.308856,
+        0.234416
+      ],
+      "psnr_mean": 18.76214941052501,
+      "ssim_mean": 0.7891705528258021,
+      "rel_l2_mean": 0.25689329298619745
+    },
+    "constrained": {
+      "label": "Constrained (ours), K=8",
+      "psnr_per_example": [
+        17.4618,
+        15.4298,
+        19.2122,
+        15.976
+      ],
+      "ssim_per_example": [
+        0.66661,
+        0.660587,
+        0.771784,
+        0.614831
+      ],
+      "rel_l2_per_example": [
+        0.283641,
+        0.318025,
+        0.357007,
+        0.294059
+      ],
+      "psnr_mean": 17.019942230172276,
+      "ssim_mean": 0.6784527616705707,
+      "rel_l2_mean": 0.3131831970037463
+    }
+  }
+}

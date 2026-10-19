@@ -1,0 +1,20 @@
+||Gb||_2=1.660635  beta0=0.830317  n_inc=8
+L0b operators f32 vs f64: Gb=1.33e-07 Gs=1.34e-07 Ei=2.05e-08 | Im(Gbw)/|Gbw|=0.6862
+     one layer on the SAME state: dchi=3.44e-03 dw=4.15e-08
+     same layer with an INDEPENDENT random init: dchi=1.22e-02 (init spread, not precision)
+alpha | sigma64 (Lanczos / power) | sigma32 | ratio
+0.050 |   1.069563   1.069564 | 1.152665 | 1.0777
+0.100 |   1.156287   1.156287 | 1.273875 | 1.1017
+0.200 |   1.307084   1.307084 | 1.198787 | 0.9171
+0.317 |   1.844202   1.844204 | 1.367471 | 0.7415
+0.400 |   1.755953   1.755946 | 1.525584 | 0.8688
+0.500 |   3.123435   3.123447 | 1.750889 | 0.5606
+0.750 |   2.440661   2.440654 | 2.432512 | 0.9967
+1.000 |   3.528501   3.528500 | 3.222481 | 0.9133
+  [PASS] complex_physics_preserved    |Im(Gb w)|/|Gb w| = 0.6862 (a destroyed imaginary part would give ~0)
+  [PASS] probe_detects_lost_imag      same formula on a real-cast field returns 0.00e+00 (must be 0)
+  [PASS] operator_roundoff_level      operator_Gb_rel = 1.33e-07 (round-off is ~1e-7; an O(1) value would mean the conversion destroyed the field)
+  [PASS] probe_detects_op_change      a deliberately altered operator is reported at 1.41 relative
+  [PASS] lanczos_vs_power             max relative spread = 4.08e-06 over 8 alpha values
+  [PASS] sigma_above_block_bound      sigma_full >= theta*alpha*max_r||E_r|| at all 8 alphas
+[wrote] D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\results\precision_audit.json  (756s, all_checks_passed=True)

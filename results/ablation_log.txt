@@ -1,0 +1,116 @@
+
+===== ablation unc_pOn_fbOn_s1  {'mode': 'unconstrained', 'proj': True, 'featbound': True}  seed=1 =====
+    ep000 loss= 0.01199
+    ep010 loss= 0.00916
+    ep020 loss= 0.00892
+    ep030 loss= 0.00873
+    ep039 loss= 0.00854
+  short-horizon RRE=0.37467022240161896
+  extrap 800: finite=True rre=0.43089911341667175 max|chi|=0.5 (over horizon 0.5) gain_cycle=15.069673538208008
+
+===== ablation unc_pOn_fbOff_s1  {'mode': 'unconstrained', 'proj': True, 'featbound': False}  seed=1 =====
+    ep000 loss= 0.01197
+    ep010 loss= 0.00921
+    ep020 loss= 0.00898
+    ep030 loss= 0.00876
+    ep039 loss= 0.00857
+  short-horizon RRE=0.3751971572637558
+  extrap 800: finite=True rre=0.4374036192893982 max|chi|=0.5 (over horizon 0.5) gain_cycle=22.202083587646484
+
+===== ablation unc_pOff_fbOn_s1  {'mode': 'unconstrained', 'proj': False, 'featbound': True}  seed=1 =====
+    ep000 loss= 0.01552
+    ep010 loss= 0.00959
+    ep020 loss= 0.00907
+    ep030 loss= 0.00872
+    ep039 loss= 0.00865
+  short-horizon RRE=0.38160231709480286
+  extrap 800: finite=True rre=0.4046132266521454 max|chi|=0.614108145236969 (over horizon 1.2131414413452148) gain_cycle=15.287064552307129
+
+===== ablation unc_pOff_fbOff_s1  {'mode': 'unconstrained', 'proj': False, 'featbound': False}  seed=1 =====
+    ep000 loss= 0.01566
+    ep010 loss= 0.00972
+    ep020 loss= 0.00913
+    ep030 loss= 0.00880
+    ep039 loss= 0.00864
+  short-horizon RRE=0.38012051582336426
+  extrap 800: finite=True rre=0.3991226851940155 max|chi|=0.6674525737762451 (over horizon 1.098760724067688) gain_cycle=12.731830596923828
+
+===== ablation cons_pOn_fbOn_s1  {'mode': 'constrained', 'proj': True, 'featbound': True}  seed=1 =====
+    ep000 loss= 0.01333
+    ep010 loss= 0.01025
+    ep020 loss= 0.01002
+    ep030 loss= 0.00988
+    ep039 loss= 0.00979
+  short-horizon RRE=0.4033418297767639
+  extrap 800: finite=True rre=0.4164869487285614 max|chi|=0.5 (over horizon 0.5) gain_cycle=26.28774070739746
+
+===== ablation cons_pOn_fbOff_s1  {'mode': 'constrained', 'proj': True, 'featbound': False}  seed=1 =====
+    ep000 loss= 0.01331
+    ep010 loss= 0.01028
+    ep020 loss= 0.01005
+    ep030 loss= 0.00990
+    ep039 loss= 0.00981
+  short-horizon RRE=0.40320323407649994
+  extrap 800: finite=True rre=0.4167289733886719 max|chi|=0.5 (over horizon 0.5) gain_cycle=51.55763244628906
+
+===== ablation cons_pOff_fbOn_s1  {'mode': 'constrained', 'proj': False, 'featbound': True}  seed=1 =====
+    ep000 loss= 0.01591
+    ep010 loss= 0.01195
+    ep020 loss= 0.01155
+    ep030 loss= 0.01125
+    ep039 loss= 0.01109
+  short-horizon RRE=0.43000800907611847
+  extrap 800: finite=True rre=0.4387628138065338 max|chi|=0.8367350101470947 (over horizon 1.0488439798355103) gain_cycle=45.21588134765625
+
+===== ablation cons_pOff_fbOff_s1  {'mode': 'constrained', 'proj': False, 'featbound': False}  seed=1 =====
+    ep000 loss= 0.01591
+    ep010 loss= 0.01189
+    ep020 loss= 0.01146
+    ep030 loss= 0.01118
+    ep039 loss= 0.01102
+  short-horizon RRE=0.42867353558540344
+  extrap 800: finite=True rre=0.4386935234069824 max|chi|=0.8428793549537659 (over horizon 1.0428946018218994) gain_cycle=37.63890075683594
+
+===== ablation unc_pOn_fbOn_s2  {'mode': 'unconstrained', 'proj': True, 'featbound': True}  seed=2 =====
+    ep000 loss= 0.01471
+    ep010 loss= 0.00926
+    ep020 loss= 0.00895
+    ep030 loss= 0.00876
+    ep039 loss= 0.00852
+  short-horizon RRE=0.3737366199493408
+  extrap 800: finite=True rre=0.3987736701965332 max|chi|=0.5 (over horizon 0.5) gain_cycle=26.119136810302734
+
+===== ablation unc_pOn_fbOn_s3  {'mode': 'unconstrained', 'proj': True, 'featbound': True}  seed=3 =====
+    ep000 loss= 0.01304
+    ep010 loss= 0.00919
+    ep020 loss= 0.00892
+    ep030 loss= 0.00866
+    ep039 loss= 0.00857
+  short-horizon RRE=0.37688541412353516
+  extrap 800: finite=True rre=0.42106500267982483 max|chi|=0.5 (over horizon 0.5) gain_cycle=13.002784729003906
+
+===== ablation unc_pOff_fbOff_s2  {'mode': 'unconstrained', 'proj': False, 'featbound': False}  seed=2 =====
+    ep000 loss= 0.01649
+    ep010 loss= 0.00991
+    ep020 loss= 0.00899
+    ep030 loss= 0.00875
+    ep039 loss= 0.00855
+  short-horizon RRE=0.37893661856651306
+  extrap 800: finite=True rre=0.39631766080856323 max|chi|=0.6022355556488037 (over horizon 1.2443650960922241) gain_cycle=23.641637802124023
+
+===== ablation unc_pOff_fbOff_s3  {'mode': 'unconstrained', 'proj': False, 'featbound': False}  seed=3 =====
+    ep000 loss= 0.01924
+    ep010 loss= 0.00965
+    ep020 loss= 0.00903
+    ep030 loss= 0.00882
+    ep039 loss= 0.00861
+  short-horizon RRE=0.38088078796863556
+  extrap 800: finite=True rre=0.4002496898174286 max|chi|=0.6294980645179749 (over horizon 1.1695259809494019) gain_cycle=11.882848739624023
+
+===== Section B: inference-time toggle on frozen weights =====
+  unconstrained_frozen_proj1: short RRE=0.3750 finite=True rre_extrap=0.40007972717285156 max|chi|=0.5
+  unconstrained_frozen_proj0: short RRE=1.5624 finite=True rre_extrap=8.688580513000488 max|chi|=62.05940246582031
+  constrained_frozen_proj1: short RRE=0.4067 finite=True rre_extrap=0.42601048946380615 max|chi|=0.5
+  constrained_frozen_proj0: short RRE=0.5630 finite=True rre_extrap=0.7066429853439331 max|chi|=2.418823003768921
+
+[ablation done] 4230s

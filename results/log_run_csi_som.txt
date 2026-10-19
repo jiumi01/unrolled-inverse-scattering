@@ -1,0 +1,9 @@
+[born init] RRE=0.4876
+[CSI] K=1   RRE=0.4665(2.8s)  K=2   RRE=0.4527(5.8s)  K=4   RRE=0.4334(12.0s)  K=8   RRE=0.4121(24.4s)  K=16  RRE=0.3947(48.8s)  K=24  RRE=0.3870(72.3s)  K=50  RRE=0.3761(152.2s)  K=100 RRE=0.3671(305.4s)
+  [SOM M= 6] pseudo-inverse check  rel.err=1.18e-15
+[SOM M= 6] best K=100 RRE=0.3537  |  0.455  0.434  0.411  0.392  0.379  0.373  0.363  0.354
+  [SOM M=12] pseudo-inverse check  rel.err=1.18e-15
+[SOM M=12] best K=100 RRE=0.3293  |  0.449  0.426  0.401  0.380  0.364  0.356  0.342  0.329
+  [SOM M=20] pseudo-inverse check  rel.err=1.25e-15
+[SOM M=20] best K=100 RRE=0.3160  |  0.441  0.417  0.392  0.371  0.354  0.345  0.329  0.316
+[csi_som done]  350s

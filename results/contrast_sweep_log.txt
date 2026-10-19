@@ -1,0 +1,26 @@
+﻿[env] ||Gb||2=1.6606 device=cuda
+[data] chi_max=0.5: max_chi=0.499 mean_pos=0.391 nz=35132/102400
+[data] chi_max=0.75: max_chi=0.748 mean_pos=0.533 nz=35132/102400
+[data] chi_max=1.0: max_chi=0.997 mean_pos=0.674 nz=35132/102400
+[data] chi_max=1.5: max_chi=1.495 mean_pos=0.957 nz=35132/102400
+[data] geometry masks identical across all levels (same shapes, contrast scaled)
+[model] loaded ckpt_constrained_K8.pt (proj ON)
+[L=0.5] beta0_meas=0.8286 (cert_box=0.8303) rre_K8=0.4067
+[L=0.5] depth(proj on): D=8 rre=0.4067 maxchi=0.500 maxw=0.647
+[L=0.5] sigma_max(Jk)=[36.661, 16.761, 2.425, 8.578, 2.405, 3.827, 5.897, 6.253] cycle_gain=69.213 cycle_rho=1.182
+[L=0.5] noise: {"30": 0.4078, "20": 0.4266, "10": 0.617, "5": 0.8523}
+[L=0.75] beta0_meas=1.2420 (cert_box=0.8303) rre_K8=0.5004
+[L=0.75] depth(proj on): D=8 rre=0.5004 maxchi=0.500 maxw=0.692
+[L=0.75] sigma_max(Jk)=[72.481, 13.195, 31.603, 21.921, 26.021, 4.17, 2.488, 10.052] cycle_gain=85.262 cycle_rho=1.189
+[L=0.75] noise: {"30": 0.5007, "20": 0.5275, "10": 0.6949, "5": 0.8692}
+[L=1.0] beta0_meas=1.6555 (cert_box=0.8303) rre_K8=0.6266
+[L=1.0] depth(proj on): D=8 rre=0.6266 maxchi=0.500 maxw=0.694
+[L=1.0] sigma_max(Jk)=[97.843, 88.082, 26.846, 8.635, 25.827, 26.978, 18.204, 13.371] cycle_gain=136.837 cycle_rho=1.204
+[L=1.0] noise: {"30": 0.6273, "20": 0.6545, "10": 0.7848, "5": 0.9075}
+[L=1.5] beta0_meas=2.4824 (cert_box=0.8303) rre_K8=0.7920
+[L=1.5] depth(proj on): D=8 rre=0.7920 maxchi=0.500 maxw=0.693
+[L=1.5] sigma_max(Jk)=[20.519, 73.615, 7.733, 13.041, 13.166, 8.614, 4.679, 3.729] cycle_gain=396.070 cycle_rho=1.143
+[L=1.5] noise: {"30": 0.7919, "20": 0.8221, "10": 0.9037, "5": 0.9602}
+[L=1.0] depth(proj OFF): D=8 rre=0.9984 D=100 maxchi=48.857 maxw=125.161
+[L=1.5] depth(proj OFF): D=8 rre=2.1285 D=100 maxchi=78.616 maxw=260.873
+[done] total 125s -> results/contrast_sweep.json

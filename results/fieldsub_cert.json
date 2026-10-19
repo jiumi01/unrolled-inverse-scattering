@@ -1,0 +1,52 @@
+{
+ "gb_norm2": 1.6606348724165476,
+ "depth": 100,
+ "n_te": 100,
+ "seed_te": 2,
+ "snr_te": 300.0,
+ "device": "cuda",
+ "ckpt": "ckpt_constrained_K8.pt",
+ "instrument": "power iteration on Gb^H diag(chi^2) Gb, warm-started, complex64",
+ "levels": {
+  "0.5": {
+   "sup_sigma": 0.6761540174484253,
+   "sup_sigma_layer": 15,
+   "max_chi": 0.5,
+   "max_chi_layer": 1,
+   "n_samples": 100,
+   "beta0_meas": 0.8285973348033175,
+   "chi_max_actual": 0.49896419048309326,
+   "upper_bound_trivial": 0.8285973348033175
+  },
+  "0.75": {
+   "sup_sigma": 0.7478772401809692,
+   "sup_sigma_layer": 7,
+   "max_chi": 0.5,
+   "max_chi_layer": 1,
+   "n_samples": 100,
+   "beta0_meas": 1.2420359515024981,
+   "chi_max_actual": 0.7479283809661865,
+   "upper_bound_trivial": 1.2420359515024981
+  },
+  "1.0": {
+   "sup_sigma": 0.7726608514785767,
+   "sup_sigma_layer": 23,
+   "max_chi": 0.5,
+   "max_chi_layer": 1,
+   "n_samples": 100,
+   "beta0_meas": 1.6554745682016787,
+   "chi_max_actual": 0.9968925714492798,
+   "upper_bound_trivial": 1.6554745682016787
+  },
+  "1.5": {
+   "sup_sigma": 0.7847815752029419,
+   "sup_sigma_layer": 23,
+   "max_chi": 0.5,
+   "max_chi_layer": 1,
+   "n_samples": 100,
+   "beta0_meas": 2.48235180160004,
+   "chi_max_actual": 1.4948209524154663,
+   "upper_bound_trivial": 2.48235180160004
+  }
+ }
+}

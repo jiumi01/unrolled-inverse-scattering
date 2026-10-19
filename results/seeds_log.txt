@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\run_seeds.py", line 179, in <module>
+    save("seeds.json", out)
+    ^^^^^^
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\run_seeds.py", line 134, in main
+    for vname, cfg in VARIANTS.items():
+                        ^^^^^^^^^^^^^^^^
+  File "C:\Users\up\miniconda3\envs\wirenet\Lib\site-packages\torch\utils\_contextlib.py", line 124, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\run_seeds.py", line 84, in eval_extrap
+    finite = True
+        ^^^^^^^^^
+torch.AcceleratorError: CUDA error: an illegal memory access was encountered
+Search for `cudaErrorIllegalAddress' in https://docs.nvidia.com/cuda/cuda-runtime-api/group__CUDART__TYPES.html for more information.
+CUDA kernel errors might be asynchronously reported at some other API call, so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1
+
+ERROR conda.cli.main_run:execute(148): `conda run python -u code/run_seeds.py` failed. (See above for error)
+[seed run 0] training-data seed=1
+  [constrained] RRE=0.4018  extrap RRE=0.4444  max|chi|=0.500  finite=True  sens=0.0780
+  [unconstrained] RRE=0.3760  extrap RRE=0.4960  max|chi|=0.500  finite=True  sens=0.0750
+  [unc_projoff_fboff] RRE=0.3796  extrap RRE=0.7190  max|chi|=0.764  finite=True  sens=0.0818
+[seed run 1] training-data seed=11
+  [constrained] RRE=0.4040  extrap RRE=0.4476  max|chi|=0.500  finite=True  sens=0.0809
+  [unconstrained] RRE=0.3752  extrap RRE=0.5307  max|chi|=0.500  finite=True  sens=0.0755
+  [unc_projoff_fboff] RRE=0.3723  extrap RRE=0.5577  max|chi|=1.114  finite=True  sens=0.0752
+[seed run 2] training-data seed=12
+  [constrained] RRE=0.4049  extrap RRE=0.4408  max|chi|=0.500  finite=True  sens=0.0829

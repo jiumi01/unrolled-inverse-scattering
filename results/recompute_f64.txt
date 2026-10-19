@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\_recompute_f64.py", line 279, in <module>
+    main()
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\_recompute_f64.py", line 247, in main
+    gs_diag = (torch.abs(Gs) ** 2).sum(dim=0).to(DT)
+               ^^^^^^^^^^^^^
+TypeError: abs(): argument 'input' (position 1) must be Tensor, not numpy.ndarray
+ERROR conda.cli.main_run:execute(148): `conda run python -u code/_recompute_f64.py` failed. (See above for error)
+=== L0b operators f32 vs f64: Gb=1.36e-07 Gs=1.33e-07 Ei=2.05e-08 | Im(Gb w)/|Gb w|=0.653 | one layer on same state: dchi=4.02e-02 dw=4.14e-08
+=== L1 float64, alpha=gamma=0.5 ===
+    block A    sigma=3.25259880 (power 3.25285099)  matvecs=44  fd-vs-jvp=1.00e+00
+    block B    sigma=14.21870830 (power 14.21877066)  matvecs=44  fd-vs-jvp=1.00e+00
+    block C    sigma=1.57754681 (power 1.57604347)  matvecs=244  fd-vs-jvp=2.33e-09
+    block D    sigma=0.61077748 (power 0.61069266)  matvecs=124  fd-vs-jvp=7.90e-09
+    block full sigma=14.59355490 (power 14.59372156)  matvecs=44  fd-vs-jvp=1.00e+00
+  sigma_A=3.25259880 B=14.21870830 C=1.57754681 D=0.61077748 full=14.59355490
+  f32 vs f64 rel.: A=7.40e-01 B=9.14e-01 C=2.74e-04 D=3.44e-03 full=8.72e-01
+  closed-form sigma_C=1.57754681 (Gram 1.57754681)  alpha_c=0.316948
+=== L2 float64 alpha sweep ===
+alpha |  sigma64 (lanczos)  sigma64 (power) | sigma32 | rel.diff | proved_lb
+0.050 |    4.388925    4.388920 |  22.7672 |  4.2e+00 | 0.1578
+0.100 |    6.099526    6.099793 |   1.2388 |  8.0e-01 | 0.3155
+0.200 |    9.756719    9.756456 |   1.4545 |  8.5e-01 | 0.6310
+0.300 |   11.852352   11.852367 |      n/a |      n/a | 0.9465
+0.400 |   10.800859   10.800805 |   1.7109 |  8.4e-01 | 1.2620
+0.500 |   14.593555   14.593731 |   1.8733 |  8.7e-01 | 1.5775
+0.750 |   20.157139   20.157179 |   3.9207 |  8.1e-01 | 2.3663
+1.000 |   10.042524   10.042604 |   4.2717 |  5.7e-01 | 3.1551
+=== L2b float64 Born-contrast variant ===
+    block A    sigma=0.50000000 (power 0.50000000)  matvecs=46  fd-vs-jvp=3.04e-09
+    block B    sigma=0.00000000 (power 0.00000000)  matvecs=2  fd-vs-jvp=0.00e+00
+    block C    sigma=1.57754681 (power 1.57604347)  matvecs=244  fd-vs-jvp=2.33e-09
+    block D    sigma=0.61077748 (power 0.61069266)  matvecs=124  fd-vs-jvp=7.90e-09
+    block full sigma=1.72245260 (power 1.71722570)  matvecs=344  fd-vs-jvp=7.39e-09
+  Born: sigma_B=0.000e+00 sigma_C=1.577547 sigma_full=1.722453 (non-Born C=1.577547 full=14.593555)
+=== L3 float64 Lambda ===

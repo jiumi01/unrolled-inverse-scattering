@@ -1,0 +1,13 @@
+[env] device=cuda batch=16 alpha=gamma=0.50 fixed_state=True
+=== n_cg=200 (state at 15) ===
+  [state15/layers200 constrained] core: lanczos=1.8444 power=1.8441 info=eigsh
+  [state15/layers200 constrained] layer 0 composite: lanczos=1.8505 power=1.8497 info=eigsh
+  [state15/layers200 constrained] layer 1 composite: lanczos=1.8449 power=1.8446 info=eigsh
+  [state15/layers200 constrained] layer 2 composite: lanczos=1.8549 power=1.8539 info=eigsh
+  [state15/layers200 constrained] layer 3 composite: lanczos=1.8457 power=1.8425 info=eigsh
+  [state15/layers200 constrained] layer 4 composite: lanczos=1.8643 power=1.8625 info=eigsh
+  [state15/layers200 constrained] layer 5 composite: lanczos=1.8536 power=1.8518 info=eigsh
+  [state15/layers200 constrained] layer 6 composite: lanczos=1.8636 power=1.8623 info=eigsh
+  [state15/layers200 constrained] layer 7 composite: lanczos=1.8358 power=1.8357 info=eigsh
+  [n_cg=200] core=1.8444 (power 1.8441)  composite_max=1.8643 (power 1.8625)  (composite<core? False / False)
+[done] 738s -> results/gain_decomp_pair.json

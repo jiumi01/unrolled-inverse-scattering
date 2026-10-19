@@ -1,0 +1,30 @@
+  gain_decomp_operator   tol=1e-05  sigma=3.219346  matvecs=44
+  gain_decomp_operator   tol=1e-06  sigma=3.219346  matvecs=44
+  gain_decomp_operator   tol=1e-08  sigma=3.219346  matvecs=44
+  bjac_operator          tol=1e-05  sigma=3.219346  matvecs=44
+  bjac_operator          tol=1e-06  sigma=3.219346  matvecs=44
+  bjac_operator          tol=1e-08  sigma=3.219346  matvecs=44
+{
+ "gain_decomp_operator_at_1e-05": 3.2193458918917264,
+ "bjac_operator_at_1e-06": 3.2193458918917264,
+ "abs_diff_vs_archive_gain_decomp": 0.0,
+ "abs_diff_vs_archive_bjac": 1.4684566968759218
+}
+{
+ "operator_at_matched_tolerance": {
+  "tol_1e-05": 0.0,
+  "tol_1e-06": 0.0
+ },
+ "tolerance_sensitivity_of_each_operator": {
+  "gain_decomp_operator": 0.0,
+  "bjac_operator": 0.0
+ }
+}
+{
+ "tolerance_is_the_cause": false,
+ "operator_construction_is_the_cause": false,
+ "both_candidate_causes_excluded": true,
+ "statement": "BOTH candidate causes are excluded. The two operator constructions agree to 0.0e+00 at matched tolerance, and neither moves when the stopping tolerance is tightened by three orders of magnitude, yet both reproduce the run_gain_decomp archive value (3.219346) and neither reproduces the run_bjac archive value (1.750889, off by 1.4685). The 1.2% inter-driver gap is therefore NOT the Lanczos stopping criterion and NOT the operator construction; the attribution to the stopping criterion is WITHDRAWN, and the difference must be a different operating point or model in the archived bjac run."
+}
+
+TOL PROBE DONE (one-vector operator agreement 0.00e+00)

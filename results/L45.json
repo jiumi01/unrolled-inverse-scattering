@@ -1,0 +1,76 @@
+{
+ "L4_constrained_composite": {
+  "sigma_max_composite": 1.735873830002304,
+  "sigma_max_composite_power": 1.7358752619807705,
+  "sigma_matvecs": 44,
+  "sigma_solver": "eigsh",
+  "rho_composite": 0.5045931502442167,
+  "rho_matvecs": 21,
+  "rho_solver": "eigs",
+  "rho_chi_composite": 0.444370524137234,
+  "sigma_max_chi_block": 0.4673891371566089,
+  "rho_chi_matvecs": 21,
+  "rho_chi_solver": "eigs",
+  "transient_norms": {
+   "1": 1.735873830002304,
+   "2": 3.0132960402432936
+  },
+  "M_J_approx": 3.0132960402432936,
+  "gap_ratio_sigma_over_rho": 3.44014545017538,
+  "maxabs_chi_after_cycle": 0.5,
+  "K": 8,
+  "proj": true,
+  "rho_chi_lt_one": true,
+  "dtype": "float64",
+  "batch": 16,
+  "tol": 0.0001,
+  "note": "rho_chi is the spectral radius of the chi -> chi block of the K-layer composite Jacobian, i.e. the quantity whose being < 1 is the hypothesis of Cor. fidelity; M_J = sup_{m in [1, 2]} ||J^m|| is the transient factor that the geometric bound rho^m omits.  Float64 because the CG contrast solve amplifies directional derivatives by ~1/lambda_min."
+ },
+ "L4_unconstrained_composite": {
+  "sigma_max_composite": 2.247150762845339,
+  "sigma_max_composite_power": 2.244938465367623,
+  "sigma_matvecs": 44,
+  "sigma_solver": "eigsh",
+  "rho_composite": 0.7965035832077431,
+  "rho_matvecs": 75,
+  "rho_solver": "eigs",
+  "rho_chi_composite": 0.5552228897092645,
+  "sigma_max_chi_block": 0.9705306800722009,
+  "rho_chi_matvecs": 57,
+  "rho_chi_solver": "eigs",
+  "transient_norms": {
+   "1": 2.247150762845339,
+   "2": 5.049686132605927
+  },
+  "M_J_approx": 5.049686132605927,
+  "gap_ratio_sigma_over_rho": 2.821268868365203,
+  "maxabs_chi_after_cycle": 0.9503961914508176,
+  "K": 8,
+  "proj": false,
+  "rho_chi_lt_one": true,
+  "dtype": "float64",
+  "batch": 16,
+  "tol": 0.0001,
+  "note": "rho_chi is the spectral radius of the chi -> chi block of the K-layer composite Jacobian, i.e. the quantity whose being < 1 is the hypothesis of Cor. fidelity; M_J = sup_{m in [1, 2]} ||J^m|| is the transient factor that the geometric bound rho^m omits.  Float64 because the CG contrast solve amplifies directional derivatives by ~1/lambda_min."
+ },
+ "L5_non_normality": {
+  "variant": "constrained K=8",
+  "sigma_max_composite": 1.735873830002304,
+  "rho_composite": 0.5045931502442167,
+  "gap_ratio_sigma_over_rho": 3.44014545017538,
+  "M_J_approx": 3.0132960402432936,
+  "transient_norms": {
+   "1": 1.735873830002304,
+   "2": 3.0132960402432936
+  },
+  "dtype": "float64",
+  "note": "rho^m <= ||J^m|| <= kappa_2(V) rho^m; the observed gap sigma_max/rho is the price of reading a spectral radius as a contraction rate on a non-normal layer."
+ },
+ "L5_non_normality_unconstrained": {
+  "sigma_max_composite": 2.247150762845339,
+  "rho_composite": 0.7965035832077431,
+  "gap_ratio_sigma_over_rho": 2.821268868365203,
+  "M_J_approx": 5.049686132605927,
+  "dtype": "float64"
+ }
+}

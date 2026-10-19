@@ -1,0 +1,45 @@
+{
+ "device": "cuda",
+ "checkpoint": "results\\ckpt_constrained_K8.pt",
+ "checkpoint_md5": "097eba097157d9283d9ac213e97d6d8c",
+ "protocol": {
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "batch": 16,
+  "dtype": "float64 / complex128 fields",
+  "estimator": "spec_tools JacOp + Lanczos (sigma_max_L), same as run_gain_decomp",
+  "layer_index": "max over k = 0..7, each layer's own correction module",
+  "proj": true,
+  "featbound": true,
+  "eps_bar": 0.03,
+  "state": "Born-LS init on the first 16 test samples (seed 2, SNR 300 dB)"
+ },
+ "sigma_max_composite_max_init_state": 14.23734869308982,
+ "sigma_max_composite_max_post_cycle_state": 3.1241475334420548,
+ "per_layer_init_state": [
+  14.222638336197544,
+  14.222898178095965,
+  14.210004185495881,
+  14.23734869308982,
+  14.146747132486414,
+  14.222413480118199,
+  14.148207626533049,
+  14.137470236921763
+ ],
+ "per_layer_post_cycle_state": [
+  3.1241475334420548,
+  3.0692163690163157,
+  3.0782068604083674,
+  3.097786835133566,
+  3.060388414881476,
+  3.0795688419082166,
+  3.0290195454780706,
+  3.0132803732425417
+ ],
+ "archived_value": 13.031654639345188,
+ "abs_diff_init_vs_archived": 1.2056940537446312,
+ "init_state_reproduces_archive": false,
+ "post_cycle_state_explains_reviewer_value": false,
+ "driver_command": "python code/run_gain_decomp.py",
+ "driver_provenance_gap": "the driver computes the post-cycle state (c0, ww0) and then does not use it: zr = flat_state(chi0, w0) is the initial state.  Unrecorded, this made the archived number look unreproducible; recorded here."
+}

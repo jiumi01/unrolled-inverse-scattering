@@ -1,0 +1,163 @@
+{
+ "instrument": "_repro_floor.py",
+ "question": "how far does an identical run move when nothing is changed? (round-3 R2 m2.5 / Q2.2)",
+ "protocol": "same driver, same seeds, same device, same BLAS thread settings; the two archives are two runs of the IDENTICAL code (the historical pair compared a pre-correction against a post-correction run, which measures the fix, not the noise -- do not quote that one as a floor)",
+ "old_archive": "results\\_regen\\seeds_prefloor_backup.json",
+ "new_archive": "results\\seeds.json",
+ "n_shared_runs": 9,
+ "shared_runs": [
+  "r0_constrained",
+  "r0_unc_projoff_fboff",
+  "r0_unconstrained",
+  "r1_constrained",
+  "r1_unc_projoff_fboff",
+  "r1_unconstrained",
+  "r2_constrained",
+  "r2_unc_projoff_fboff",
+  "r2_unconstrained"
+ ],
+ "per_arm": {
+  "r0_constrained": {
+   "rre_K8_old": 0.3720054179430008,
+   "rre_K8_new": 0.37278157472610474,
+   "d_rre": 0.0007761567831039429,
+   "extrap_old": 0.38549697399139404,
+   "extrap_new": 0.3880145847797394,
+   "d_extrap": 0.002517610788345337,
+   "maxabs_chi_old": 0.5,
+   "maxabs_chi_new": 0.5,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": true,
+   "box_verdict_new": true
+  },
+  "r0_unc_projoff_fboff": {
+   "rre_K8_old": 0.34133851528167725,
+   "rre_K8_new": 0.3356700986623764,
+   "d_rre": -0.005668416619300842,
+   "extrap_old": 0.6549467444419861,
+   "extrap_new": 0.6214740872383118,
+   "d_extrap": -0.033472657203674316,
+   "maxabs_chi_old": 1.2875350713729858,
+   "maxabs_chi_new": 1.2587369680404663,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": false,
+   "box_verdict_new": false
+  },
+  "r0_unconstrained": {
+   "rre_K8_old": 0.3406846523284912,
+   "rre_K8_new": 0.33730389177799225,
+   "d_rre": -0.0033807605504989624,
+   "extrap_old": 0.4700869917869568,
+   "extrap_new": 0.4603821039199829,
+   "d_extrap": -0.009704887866973877,
+   "maxabs_chi_old": 0.5,
+   "maxabs_chi_new": 0.5,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": true,
+   "box_verdict_new": true
+  },
+  "r1_constrained": {
+   "rre_K8_old": 0.38868841528892517,
+   "rre_K8_new": 0.3749082237482071,
+   "d_rre": -0.013780191540718079,
+   "extrap_old": 0.41858550906181335,
+   "extrap_new": 0.39113786816596985,
+   "d_extrap": -0.027447640895843506,
+   "maxabs_chi_old": 0.5,
+   "maxabs_chi_new": 0.5,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": true,
+   "box_verdict_new": true
+  },
+  "r1_unc_projoff_fboff": {
+   "rre_K8_old": 0.34644612669944763,
+   "rre_K8_new": 0.34854571521282196,
+   "d_rre": 0.0020995885133743286,
+   "extrap_old": 0.8089381456375122,
+   "extrap_new": 0.8435148596763611,
+   "d_extrap": 0.03457671403884888,
+   "maxabs_chi_old": 0.9481456875801086,
+   "maxabs_chi_new": 0.989331841468811,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": false,
+   "box_verdict_new": false
+  },
+  "r1_unconstrained": {
+   "rre_K8_old": 0.3382181078195572,
+   "rre_K8_new": 0.339543417096138,
+   "d_rre": 0.0013253092765808105,
+   "extrap_old": 0.4390113651752472,
+   "extrap_new": 0.44720885157585144,
+   "d_extrap": 0.008197486400604248,
+   "maxabs_chi_old": 0.5,
+   "maxabs_chi_new": 0.5,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": true,
+   "box_verdict_new": true
+  },
+  "r2_constrained": {
+   "rre_K8_old": 0.3734212964773178,
+   "rre_K8_new": 0.371870756149292,
+   "d_rre": -0.0015505403280258179,
+   "extrap_old": 0.38523489236831665,
+   "extrap_new": 0.38508254289627075,
+   "d_extrap": -0.00015234947204589844,
+   "maxabs_chi_old": 0.5,
+   "maxabs_chi_new": 0.5,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": true,
+   "box_verdict_new": true
+  },
+  "r2_unc_projoff_fboff": {
+   "rre_K8_old": 0.3561922460794449,
+   "rre_K8_new": 0.3380788415670395,
+   "d_rre": -0.018113404512405396,
+   "extrap_old": 0.5069341063499451,
+   "extrap_new": 0.53492271900177,
+   "d_extrap": 0.02798861265182495,
+   "maxabs_chi_old": 0.812187671661377,
+   "maxabs_chi_new": 0.9935998320579529,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": false,
+   "box_verdict_new": false
+  },
+  "r2_unconstrained": {
+   "rre_K8_old": 0.33965763449668884,
+   "rre_K8_new": 0.3389929533004761,
+   "d_rre": -0.0006646811962127686,
+   "extrap_old": 0.47222036123275757,
+   "extrap_new": 0.4608682096004486,
+   "d_extrap": -0.01135215163230896,
+   "maxabs_chi_old": 0.5,
+   "maxabs_chi_new": 0.5,
+   "finite_old": true,
+   "finite_new": true,
+   "box_verdict_old": true,
+   "box_verdict_new": true
+  }
+ },
+ "abs_d_rre_K8": {
+  "max": 0.018113404512405396,
+  "median": 0.0020995885133743286,
+  "mean": 0.005262116591135661
+ },
+ "abs_d_extrap_rre": {
+  "max": 0.03457671403884888,
+  "median": 0.01135215163230896
+ },
+ "abs_d_maxabs_chi": {
+  "max": 0.18141216039657593
+ },
+ "finite_all_old": true,
+ "finite_all_new": true,
+ "box_verdict_stable": true,
+ "note": "The floor is quoted in the manuscript next to the seed spread. If the floor is not small compared with the spread, the spread cannot be attributed to the seed, and the qualitative verdicts (finite / inside the box) are the ones that survive; that is what the numbers show."
+}

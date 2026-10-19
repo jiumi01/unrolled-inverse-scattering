@@ -1,0 +1,55 @@
+{
+ "device": "cpu",
+ "checkpoint": "results\\ckpt_constrained_K8.pt",
+ "checkpoint_md5": "cbaf739394c81ea7388edc5bd87370c4",
+ "protocol": {
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "batch": 16,
+  "dtype": "float64 / complex128 fields",
+  "estimator": "spec_tools JacOp + Lanczos (sigma_max_L), same as run_gain_decomp",
+  "layer_index": "max over k = 0..7, each layer's own correction module",
+  "proj": true,
+  "featbound": true,
+  "eps_bar": 0.03,
+  "state": "Born-LS init on the first 16 test samples (seed 2, SNR 300 dB)",
+  "state_source": "init_state() on a K=1, proj=True model instance -- NOT on the K=8 corrector.  This mirrors run_gain_decomp.py exactly, which takes the state from its section-A object and only the composite from the K=8 checkpoint."
+ },
+ "state_sensitivity": {
+  "source": "results/prov_state.json",
+  "available": true,
+  "rel_state_diff_driver_vs_probe_model": 7.71131250628073e-06,
+  "sigma_at_layer_driver_state": 3.083909886418289,
+  "sigma_at_layer_probe_state": 3.080861267531672,
+  "rel_sigma_change": 0.0009885564101736793,
+  "warning": "mirroring the driver's state construction is not cosmetic: a ~1e-5 relative state difference moves this quantity by ~9%, so the state construction is load-bearing to five significant figures"
+ },
+ "sigma_max_composite_max_init_state": 3.156807101829948,
+ "sigma_max_composite_max_post_cycle_state": 1.6712770924563078,
+ "per_layer_init_state": [
+  3.058210382175227,
+  3.15572616868496,
+  3.1481478039876434,
+  3.080861267531672,
+  3.068215898105727,
+  3.0517884063673733,
+  3.0459931010673196,
+  3.156807101829948
+ ],
+ "per_layer_post_cycle_state": [
+  1.670653167343794,
+  1.670627791667992,
+  1.6712770924563078,
+  1.6646131334006289,
+  1.6651306169925888,
+  1.6647984969991814,
+  1.665528333644751,
+  1.6676863031874243
+ ],
+ "archived_value": 3.1607140422408535,
+ "abs_diff_init_vs_archived": 0.003906940410905335,
+ "init_state_reproduces_archive": true,
+ "post_cycle_state_explains_reviewer_value": false,
+ "driver_command": "python code/run_gain_decomp.py",
+ "driver_provenance_gap": "the driver computes the post-cycle state (c0, ww0) and then does not use it: zr = flat_state(chi0, w0) is the initial state.  Unrecorded, this made the archived number look unreproducible; recorded here."
+}

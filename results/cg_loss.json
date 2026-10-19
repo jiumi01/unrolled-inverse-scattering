@@ -1,0 +1,6 @@
+{
+ "train15": 0.00853663408714864,
+ "train200": 0.011386680571983257,
+ "ratio": 1.3338606827631492,
+ "loss_note": "train()'s exact objective, chi MSE + 0.5 * data-consistency MSE, full 300-sample training set, eval mode, both models at their own training truncation; produced by code/_cgloss_probe.py"
+}

@@ -1,0 +1,29 @@
+=== L0) layer_fixed vs UnrolledISP.layer: dchi=0.00e+00 dw=0.00e+00 (alpha=0.250 gamma=0.300) ===
+=== A) physics core only (alpha=gamma=0.50, no correction) ===
+  A(chi-block)=3.218399 (power 3.218103)   D(w-block)=0.610777 (power 0.610125)   full=14.418558 (power 14.418359)
+  Thm field bound on D: 0.915159  -> respected: True
+=== B/C) constrained (K=8 checkpoint) ===
+   layer 0: Lip(H)=0.139089 (power 0.139089)  composite=13.022447 (power 13.022634)
+   layer 1: Lip(H)=0.111403 (power 0.111402)  composite=13.000838 (power 13.000718)
+   layer 2: Lip(H)=0.087964 (power 0.087964)  composite=12.993579 (power 12.993456)
+   layer 3: Lip(H)=0.109264 (power 0.109231)  composite=13.031655 (power 13.031738)
+   layer 4: Lip(H)=0.169454 (power 0.169454)  composite=12.935905 (power 12.935838)
+   layer 5: Lip(H)=0.214159 (power 0.214159)  composite=12.999523 (power 13.000048)
+   layer 6: Lip(H)=0.266319 (power 0.266319)  composite=12.925609 (power 12.925658)
+   layer 7: Lip(H)=0.319217 (power 0.319217)  composite=12.928573 (power 12.928710)
+  pure Lip(H_k) max = 0.319217 (power 0.319217)  (eps_bar=0.030, budget respected: False)
+  learned alpha=[0.305, 0.316, 0.316, 0.313, 0.308, 0.305, 0.302, 0.306]
+  learned gamma=[0.263, 0.219, 0.221, 0.239, 0.259, 0.247, 0.224, 0.212]
+=== B/C) unconstrained (K=8 checkpoint) ===
+   layer 0: Lip(H)=0.884750 (power 0.884728)  composite=12.902821 (power 12.902722)
+   layer 1: Lip(H)=0.674962 (power 0.673070)  composite=10.768547 (power 10.768722)
+   layer 2: Lip(H)=0.668220 (power 0.667268)  composite=13.682017 (power 13.682764)
+   layer 3: Lip(H)=0.812632 (power 0.812544)  composite=13.414517 (power 13.414596)
+   layer 4: Lip(H)=1.743273 (power 1.743273)  composite=13.155748 (power 13.155799)
+   layer 5: Lip(H)=0.824788 (power 0.824230)  composite=13.128111 (power 13.128256)
+   layer 6: Lip(H)=1.137960 (power 1.137346)  composite=12.867410 (power 12.867633)
+   layer 7: Lip(H)=1.252942 (power 1.252898)  composite=11.560694 (power 11.560931)
+  pure Lip(H_k) max = 1.743273 (power 1.743273)  (eps_bar=0.030, budget respected: False)
+  learned alpha=[0.281, 0.277, 0.274, 0.277, 0.273, 0.287, 0.289, 0.236]
+  learned gamma=[0.255, 0.297, 0.315, 0.328, 0.325, 0.319, 0.307, 0.309]
+[gain decomp done] 380s

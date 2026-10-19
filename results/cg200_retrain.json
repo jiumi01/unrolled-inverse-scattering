@@ -1,0 +1,23 @@
+{
+ "checkpoint": "results\\ckpt_cg200_constrained_K8.pt",
+ "K": 8,
+ "mode": "constrained",
+ "eps_bar": 0.03,
+ "n_cg_train": 200,
+ "epochs": 40,
+ "arm_seed": 1234,
+ "device": "cuda",
+ "dtype": "float32 (training chain)",
+ "train_cg_resid_last": 1.1936558408365272e-09,
+ "eval_rre": {
+  "15": 0.39139385521411896,
+  "200": 0.3768705576658249
+ },
+ "protocol": "identical to run_cg_sweep.py Part 2 embedded trainer; explicit seed shared with _retrain_depth.py so the train15/train200 pair differs only in the contrast-solve step count",
+ "provenance_md5": {
+  "isp_core.py": "8cdaa0af542a1097f91d86a5708efbfc",
+  "run_experiments.py": "0225765dcd4b9ff5541b9e277ea24390",
+  "run_cg_sweep.py": "901578628f3bc26dd77879e14f3cf17b"
+ },
+ "wallclock_s": 2234.7433454990387
+}

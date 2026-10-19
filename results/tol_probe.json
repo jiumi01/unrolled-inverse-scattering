@@ -1,0 +1,83 @@
+{
+ "device": "cuda",
+ "protocol": {
+  "state": "Born-LS init state, batch 16",
+  "alpha": 0.5,
+  "gamma": 0.5,
+  "theta": 1.0,
+  "dtype": "float64 / complex128",
+  "proj": true,
+  "use_corr": false,
+  "model": "UnrolledISP(1, constrained, proj=True)"
+ },
+ "grid": {
+  "gain_decomp_operator": {
+   "tol_1e-05": {
+    "sigma": 3.2193458918917264,
+    "matvecs": 44,
+    "solver": "eigsh"
+   },
+   "tol_1e-06": {
+    "sigma": 3.2193458918917264,
+    "matvecs": 44,
+    "solver": "eigsh"
+   },
+   "tol_1e-08": {
+    "sigma": 3.2193458918917264,
+    "matvecs": 44,
+    "solver": "eigsh"
+   }
+  },
+  "bjac_operator": {
+   "tol_1e-05": {
+    "sigma": 3.2193458918917264,
+    "matvecs": 44,
+    "solver": "eigsh"
+   },
+   "tol_1e-06": {
+    "sigma": 3.2193458918917264,
+    "matvecs": 44,
+    "solver": "eigsh"
+   },
+   "tol_1e-08": {
+    "sigma": 3.2193458918917264,
+    "matvecs": 44,
+    "solver": "eigsh"
+   }
+  }
+ },
+ "operator_agreement_rel": 0.0,
+ "archived": {
+  "gain_decomp_A_physics_core_sigma_max_full": 3.2193458918917264,
+  "bjac_L1_physics_core_sigma_full": 1.7508891950158045,
+  "cross_driver_rel_gap": 0.4561351113511568,
+  "cross_driver_rel_gap_pct": 45.61351113511568
+ },
+ "diagnostics": {
+  "operator_at_matched_tolerance": {
+   "tol_1e-05": 0.0,
+   "tol_1e-06": 0.0
+  },
+  "tolerance_sensitivity_of_each_operator": {
+   "gain_decomp_operator": 0.0,
+   "bjac_operator": 0.0
+  }
+ },
+ "reproduces_archive": {
+  "gain_decomp_operator_at_1e-05": 3.2193458918917264,
+  "bjac_operator_at_1e-06": 3.2193458918917264,
+  "abs_diff_vs_archive_gain_decomp": 0.0,
+  "abs_diff_vs_archive_bjac": 1.4684566968759218
+ },
+ "verdict": {
+  "tolerance_is_the_cause": false,
+  "operator_construction_is_the_cause": false,
+  "both_candidate_causes_excluded": true,
+  "statement": "BOTH candidate causes are excluded. The two operator constructions agree to 0.0e+00 at matched tolerance, and neither moves when the stopping tolerance is tightened by three orders of magnitude, yet both reproduce the run_gain_decomp archive value (3.219346) and neither reproduces the run_bjac archive value (1.750889, off by 1.4685). The 1.2% inter-driver gap is therefore NOT the Lanczos stopping criterion and NOT the operator construction; the attribution to the stopping criterion is WITHDRAWN, and the difference must be a different operating point or model in the archived bjac run."
+ },
+ "driver_commands": [
+  "python code/run_gain_decomp.py",
+  "python code/run_bjac.py",
+  "python code/_tol_probe.py cuda"
+ ]
+}

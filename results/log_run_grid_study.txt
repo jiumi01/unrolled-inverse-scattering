@@ -1,0 +1,6 @@
+[validate] FFT vs dense matvec rel-err @ nx=32: 9.657e-16
+[validate] ||Gb||2 @ nx=32  dense=1.660635  power=1.660635
+nx= 32 dx=0.0200  ||Gb||2=1.66063  ||Gs||2=0.08828  beta0=0.83032  E=3.29538  alpha_c=0.30346  (beta0<1: True)  0.2s
+nx= 64 dx=0.0100  ||Gb||2=1.65361  ||Gs||2=0.04414  beta0=0.82681  E=3.31200  alpha_c=0.30193  (beta0<1: True)  0.7s
+nx=128 dx=0.0050  ||Gb||2=1.65158  ||Gs||2=0.02207  beta0=0.82579  E=3.31836  alpha_c=0.30135  (beta0<1: True)  4.8s
+[grid_study done] D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\results\grid_study.json  8s

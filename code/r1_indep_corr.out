@@ -1,0 +1,5 @@
+  constrained   Lip_H     layer 7: sigma_max=0.319217 (power 0.318964)
+  constrained   composite layer 3: sigma_max=14.554118 (power 14.554072)
+  unconstrained Lip_H     layer 4: sigma_max=0.052109 (power 0.052096)
+  unconstrained composite layer 2: sigma_max=14.597829 (power 14.598005)
+paper: constrained Lip(H)=0.3192 composite=13.032 ; unconstrained Lip(H)=1.743 composite=13.682

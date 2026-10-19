@@ -1,0 +1,26 @@
+{
+  "n_test_full": 100,
+  "n_displayed": 4,
+  "note": "full-set = eval_model over chi_te_d (the protocol behind depth_curve.json and every RRE quoted in the manuscript); first-4 = chi_te_d[0:4], the subset stored in images.npz and shown in Fig. images",
+  "arms": {
+    "classical_K8": {
+      "rre_full_test": 0.405481,
+      "rre_first_4": 0.367758,
+      "rre_recovered_from_npz": 0.367758,
+      "subset_hypothesis_confirmed": true
+    },
+    "constrained_K8": {
+      "rre_full_test": 0.373055,
+      "rre_first_4": 0.313183,
+      "rre_recovered_from_npz": 0.313183,
+      "subset_hypothesis_confirmed": true
+    },
+    "unconstrained_K8": {
+      "rre_full_test": 0.341148,
+      "rre_first_4": 0.256893,
+      "rre_recovered_from_npz": 0.256893,
+      "subset_hypothesis_confirmed": true
+    }
+  },
+  "H1_subset_confirmed": true
+}

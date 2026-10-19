@@ -1,0 +1,110 @@
+[meta] ||Gb||2=1.6606  chi_max=0.50  cert beta<= 0.8303
+[1/6] classical Born/CSI alternating (no learning)
+    {'1': 0.4037, '2': 0.4061, '4': 0.4054, '8': 0.4055, '16': 0.4054, '24': 0.4055, '50': 0.4055, '100': 0.4055}
+[2/6] training depth sweep (constrained / unconstrained)
+  train constrained_K2
+    ep000 loss= 0.01095
+    ep010 loss= 0.00955
+    ep020 loss= 0.00945
+    ep030 loss= 0.00943
+    ep039 loss= 0.00938
+    test RRE=0.3913
+  train constrained_K4
+    ep000 loss= 0.01019
+    ep010 loss= 0.00891
+    ep020 loss= 0.00886
+    ep030 loss= 0.00890
+    ep039 loss= 0.00884
+    test RRE=0.3801
+  train constrained_K8
+    ep000 loss= 0.00975
+    ep010 loss= 0.00866
+    ep020 loss= 0.00862
+    ep030 loss= 0.00861
+    ep039 loss= 0.00859
+    test RRE=0.3731
+  train constrained_K16
+    ep000 loss= 0.00962
+    ep010 loss= 0.00856
+    ep020 loss= 0.00861
+    ep029 loss= 0.00850
+    test RRE=0.3737
+  train constrained_K24
+    ep000 loss= 0.00968
+    ep010 loss= 0.00854
+    ep020 loss= 0.00859
+    ep029 loss= 0.00849
+    test RRE=0.3716
+  train unconstrained_K2
+    ep000 loss= 0.01099
+    ep010 loss= 0.00898
+    ep020 loss= 0.00875
+    ep030 loss= 0.00851
+    ep039 loss= 0.00835
+    test RRE=0.3665
+  train unconstrained_K4
+    ep000 loss= 0.01005
+    ep010 loss= 0.00856
+    ep020 loss= 0.00825
+    ep030 loss= 0.00807
+    ep039 loss= 0.00785
+    test RRE=0.3511
+  train unconstrained_K8
+    ep000 loss= 0.01100
+    ep010 loss= 0.00825
+    ep020 loss= 0.00782
+    ep030 loss= 0.00746
+    ep039 loss= 0.00736
+    test RRE=0.3411
+  train unconstrained_K16
+    ep000 loss= 0.01494
+    ep010 loss= 0.00831
+    ep020 loss= 0.00796
+    ep029 loss= 0.00753
+    test RRE=0.3469
+  train unconstrained_K24
+    ep000 loss= 0.01236
+    ep010 loss= 0.00825
+    ep020 loss= 0.00786
+    ep029 loss= 0.00758
+    test RRE=0.3432
+[3/6] per-layer exact gain (power iteration on J^T J)
+   constrained: per-layer [5.9, 8.713, 3.888, 6.969, 2.163, 2.27, 1.826, 1.673] cycle=9.20069694519043
+   unconstrained: per-layer [5.524, 5.005, 9.819, 5.847, 3.423, 3.425, 3.676, 2.857] cycle=11.138547897338867
+[4/6] depth extrapolation (cycle trained K=8 layers x100)
+   constrained: final res=8.43e-02 rre=0.3832 max|chi|=0.500
+   unconstrained: final res=2.51e-01 rre=0.4011 max|chi|=0.490
+   classical: final res=2.52e-04 rre=0.4094 max|chi|=0.500
+[5/6] noise sensitivity (K=8 models)
+   constrained: {'30': {'rre': 0.37363550066947937, 'sens': 0.04515291005373001}, '20': {'rre': 0.3928104341030121, 'sens': 0.16174043715000153}, '10': {'rre': 0.6162641048431396, 'sens': 0.5908905863761902}, '5': {'rre': 0.8548002243041992, 'sens': 0.9381315112113953}}
+   unconstrained: {'30': {'rre': 0.3426007628440857, 'sens': 0.0465945228934288}, '20': {'rre': 0.37010714411735535, 'sens': 0.16480383276939392}, '10': {'rre': 0.5895627737045288, 'sens': 0.5457144975662231}, '5': {'rre': 0.8135534524917603, 'sens': 0.83780437707901}}
+[6/6] eps_bar sweep (constrained, K=8)
+    ep000 loss= 0.00979
+    ep010 loss= 0.00899
+    ep020 loss= 0.00892
+    ep030 loss= 0.00891
+    ep039 loss= 0.00893
+   eps_bar=0.01: RRE=0.3806 sens=0.1579
+    ep000 loss= 0.00972
+    ep010 loss= 0.00871
+    ep020 loss= 0.00866
+    ep030 loss= 0.00864
+    ep039 loss= 0.00861
+   eps_bar=0.03: RRE=0.3741 sens=0.1550
+    ep000 loss= 0.00976
+    ep010 loss= 0.00849
+    ep020 loss= 0.00841
+    ep030 loss= 0.00843
+    ep039 loss= 0.00841
+   eps_bar=0.06: RRE=0.3689 sens=0.1524
+    ep000 loss= 0.00982
+    ep010 loss= 0.00853
+    ep020 loss= 0.00836
+    ep030 loss= 0.00841
+    ep039 loss= 0.00837
+   eps_bar=0.12: RRE=0.3683 sens=0.1558
+[extra] gradient norm vs depth (K=24 models)
+   constrained: {'1': 0.0029932408506283537, '2': 0.0020391596626723185, '4': 0.0014629903598688543, '8': 0.0006573095752173685, '16': 0.0002796284225041745, '24': 2.006848467317468e-05}
+   unconstrained: {'1': 0.10384712554514408, '2': 0.13305980106815696, '4': 0.11249342979863286, '8': 0.048072315752506256, '16': 0.005994906008709222, '24': 0.00045401060015137773}
+[extra] save reconstruction examples
+[done] total 2602s

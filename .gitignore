@@ -1,0 +1,33 @@
+# --- Paper / manuscript (not for code release) ---
+paper_mdpi/
+paper_en/
+paper_cn/
+submission/
+reviews/
+docs/
+*.md
+!README.md
+
+# --- Model checkpoints (too large; available on request) ---
+results/ckpt*.pt
+results/cache/
+results/cache_geom/
+results/ckpt_archive_r1/
+results/_pre_regen_snapshot/
+results/_regen/
+results/_regen2/
+
+# --- Python artifacts ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+code/*.bak*
+*.log
+
+# --- OS / editor ---
+.DS_Store
+Thumbs.db
+.workbuddy/
+.vscode/
+.idea/

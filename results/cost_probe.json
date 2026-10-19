@@ -1,0 +1,41 @@
+{
+ "protocol": {
+  "device": "cpu",
+  "threads": 2,
+  "batch": 16,
+  "reps": 7,
+  "nx": 32,
+  "ny": 32,
+  "n_inc": 8,
+  "n_rx": 32,
+  "n_cg_effective_default": 15,
+  "note": "median wall-clock after 2 warm-up calls; architecture cost only, no checkpoint loaded; classical layer uses the same n_cg=15 solve"
+ },
+ "wallclock_s": {
+  "learned_layer_total": 0.028879999881610274,
+  "classical_layer_total": 0.02478020009584725,
+  "cg_solve_full_budget": 0.01992719992995262,
+  "cg_solve_one_iter": 0.002287699840962887,
+  "gb_apply_once": 0.004120999947190285,
+  "correction_cnn_only": 0.0020291998516768217
+ },
+ "wallclock_share": {
+  "cg_over_learned_layer": 0.6900000004031002,
+  "cnn_over_learned_layer": 0.07026315304692718,
+  "learned_over_classical_layer_minus_one": 0.16544659727949831,
+  "gb_apply_over_learned_layer": 0.14269390457353798
+ },
+ "mac_analytic": {
+  "cnn_per_sample": 4276224,
+  "cg_per_sample_per_iter": 532480,
+  "cg_per_sample_full_budget": 7987200,
+  "gb_apply_per_sample": 8388608,
+  "feature_map_gsH_per_sample": 262144,
+  "cnn_params": 4193
+ },
+ "verdict": {
+  "comparator_is_damped_alternating_fixed_point": true,
+  "cnn_overhead_vs_classical_layer": 0.16544659727949831,
+  "cbudget_identical_between_arms": true
+ }
+}

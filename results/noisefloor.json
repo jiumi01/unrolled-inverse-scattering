@@ -1,0 +1,15 @@
+{
+ "protocol": {
+  "n_samples": 100,
+  "seed": 2,
+  "snr_db_requested": 300.0,
+  "note": "synthesis in float64 (as the generator computes it), then the generator's own complex64/float32 cast applied to a copy; the relative round-trip error is the quietest signal the stored data can represent"
+ },
+ "field_roundtrip_rel": 2.566882860907515e-08,
+ "field_floor_db": -151.81187899604717,
+ "contrast_roundtrip_rel_mean": 2.1928491752390155e-08,
+ "contrast_floor_db": -153.17982476375016,
+ "nominal_snr_db": 300.0,
+ "effective_snr_db": 151.81187899604717,
+ "verdict_nominal_exceeds_storage": true
+}

@@ -1,0 +1,29 @@
+[A] SYNTHETIC (32x32, dx=0.02, lam=1, chi_max=0.5)
+    ||Gb||2 = 1.6606348724   (paper 1.6606348724)
+    beta0   = 0.8303174362   (paper 0.8303174362)
+    ||Gs||2 = 0.0882811300
+
+[B] FRESNEL 2-D (f=2GHz, lam=0.1499 m, R=1.67 m, 150x150 @ dx=0.00300 m=0.0200 lam)
+    ||Gb||2 = 7.1993677605
+    ||Gs||2 = 0.1000014098
+    beta0   = chi_max*||Gb||2 = 14.3987355209   (synthetic was 0.8303)
+    beta0 < 1 ?  False
+    target support fraction = 0.0071
+    forward solve gmres info (0=ok) = 0
+    E_peak (max col L2 norm) = 6.0540255747
+    alpha_c = 1/E_peak = 0.1651793485   (synthetic was 0.3169478057)
+    impossibility LB sigma_max(J) >= theta*alpha*E = 3.0270127874 @ alpha=0.5
+
+[B2] FRESNEL 2-D, PUBLISHED ACQUISITION (36 src @0.72 m, 49 rx @0.76 m arc 60-300 deg)
+    ||Gb||2 = 7.1993677605   (acquisition-independent)
+    ||Gs||2 = 0.1791000787
+    beta0   = 14.3987355209   (identical to [B]: acquisition-independent)
+    E_peak  = 5.0508537503   alpha_c = 0.1979863305
+    impossibility LB @alpha=0.5 = 2.5254268752
+
+[C] COMPARISON (synthetic 32x32 vs real Fresnel 2-D)
+    beta0:   0.8303 (synth) -> 14.3987 (Fresnel)  x17.34
+    ||Gb||2: 1.6606 (synth) -> 7.1994 (Fresnel)
+    alpha_c: 0.3169 (synth) -> 0.1652 (Fresnel)
+
+[done] D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\results\fresnel_cert.json  (41s)

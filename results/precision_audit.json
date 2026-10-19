@@ -1,0 +1,145 @@
+{
+ "dtype": "precision audit",
+ "alpha_grid": [
+  0.05,
+  0.1,
+  0.2,
+  0.317,
+  0.4,
+  0.5,
+  0.75,
+  1.0
+ ],
+ "batch": 16,
+ "theta": 1.0,
+ "chi_max_box": 0.5,
+ "unit_roundoff": 1.1e-16,
+ "dtype_consistency": {
+  "operator_Gb_rel": 1.329013021202261e-07,
+  "operator_Gs_rel": 1.3351483304802774e-07,
+  "operator_Ei_rel": 2.0494522820094556e-08,
+  "imag_frac_Gbw": 0.6862377959467371,
+  "layer_rel": 0.0034412868871706776,
+  "layer_w_rel": 4.149513027005863e-08
+ },
+ "layer_rel_cross_init": 0.012155965990517865,
+ "alpha_sweep": [
+  {
+   "alpha": 0.05,
+   "sigma_full_f64": 1.0695634758624872,
+   "sigma_full_f64_power": 1.069563655323689,
+   "sigma_full_f32": 1.1526654197040547,
+   "ratio_f32_over_f64": 1.0776970658749867,
+   "matvecs": 64,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 0.1,
+   "sigma_full_f64": 1.1562871815842468,
+   "sigma_full_f64_power": 1.156286847103791,
+   "sigma_full_f32": 1.2738747888848638,
+   "ratio_f32_over_f64": 1.1016941199153556,
+   "matvecs": 44,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 0.2,
+   "sigma_full_f64": 1.307083761364122,
+   "sigma_full_f64_power": 1.307083698914563,
+   "sigma_full_f32": 1.1987871534011476,
+   "ratio_f32_over_f64": 0.9171463901824073,
+   "matvecs": 44,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 0.317,
+   "sigma_full_f64": 1.8442022339038784,
+   "sigma_full_f64_power": 1.844203584729768,
+   "sigma_full_f32": 1.3674712852705737,
+   "ratio_f32_over_f64": 0.7414974671057944,
+   "matvecs": 44,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 0.4,
+   "sigma_full_f64": 1.755953032683667,
+   "sigma_full_f64_power": 1.7559458687578817,
+   "sigma_full_f32": 1.5255841200490334,
+   "ratio_f32_over_f64": 0.8688069052265281,
+   "matvecs": 44,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 0.5,
+   "sigma_full_f64": 3.1234350992134585,
+   "sigma_full_f64_power": 3.1234467580233476,
+   "sigma_full_f32": 1.7508891936663185,
+   "ratio_f32_over_f64": 0.5605652552560565,
+   "matvecs": 44,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 0.75,
+   "sigma_full_f64": 2.440661222371461,
+   "sigma_full_f64_power": 2.4406543759648645,
+   "sigma_full_f32": 2.4325121790091186,
+   "ratio_f32_over_f64": 0.9966611329390384,
+   "matvecs": 104,
+   "solver": "eigsh",
+   "f32_error": null
+  },
+  {
+   "alpha": 1.0,
+   "sigma_full_f64": 3.5285008818897996,
+   "sigma_full_f64_power": 3.52850047863112,
+   "sigma_full_f32": 3.222480730527763,
+   "ratio_f32_over_f64": 0.9132719073608003,
+   "matvecs": 44,
+   "solver": "eigsh",
+   "f32_error": null
+  }
+ ],
+ "summary": {
+  "prec_ratio_lo": 0.5605652552560565,
+  "prec_ratio_hi": 1.1016941199153556,
+  "operator_Gb_rel": 1.329013021202261e-07,
+  "layer_rel": 0.0034412868871706776,
+  "prec_amp": 25893.552826574993,
+  "f64_sig_err": 2.8482908109232494e-12
+ },
+ "self_checks": {
+  "complex_physics_preserved": {
+   "passed": true,
+   "detail": "|Im(Gb w)|/|Gb w| = 0.6862 (a destroyed imaginary part would give ~0)"
+  },
+  "probe_detects_lost_imag": {
+   "passed": true,
+   "detail": "same formula on a real-cast field returns 0.00e+00 (must be 0)"
+  },
+  "operator_roundoff_level": {
+   "passed": true,
+   "detail": "operator_Gb_rel = 1.33e-07 (round-off is ~1e-7; an O(1) value would mean the conversion destroyed the field)"
+  },
+  "probe_detects_op_change": {
+   "passed": true,
+   "detail": "a deliberately altered operator is reported at 1.41 relative"
+  },
+  "lanczos_vs_power": {
+   "passed": true,
+   "detail": "max relative spread = 4.08e-06 over 8 alpha values"
+  },
+  "sigma_above_block_bound": {
+   "passed": true,
+   "detail": "sigma_full >= theta*alpha*max_r||E_r|| at all 8 alphas"
+  }
+ },
+ "all_checks_passed": true,
+ "note": "Operator-level precision audit on the same 16 test states as Table cert. (a) operators applied to the same complex input in both precisions -- a destroyed imaginary part gives O(1), float32 round-off gives O(1e-7). (b) one full layer on the SAME state: layer_rel is not a conversion defect but the amplification of a ~1e-7 arithmetic difference by the 15-step CG contrast solve (lambda_min ~ 1e-5). (c) sigma_full(float32)/sigma_full(float64) is not a constant factor over alpha, because that amplification depends on where the Ritz vector sits relative to the nearly defective eigenstructure.",
+ "wallclock_s": 755.8
+}

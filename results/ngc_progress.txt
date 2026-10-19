@@ -1,0 +1,26 @@
+=== CG relative residual of the contrast solve ===
+    n_cg=15   ||b-Ax||/||b|| = 2.8991e-04
+    n_cg=50   ||b-Ax||/||b|| = 3.7403e-08
+    n_cg=150  ||b-Ax||/||b|| = 1.1156e-09
+    n_cg=200  ||b-Ax||/||b|| = 8.1842e-10
+    n_cg=400  ||b-Ax||/||b|| = 4.0534e-10
+=== L1 block spectrum, n_cg=15 ===
+    n_cg=15  block A    sigma=1.17477637  matvecs=44  fd.best=8.16e-01
+    n_cg=15  block B    sigma=2.78914205  matvecs=44  fd.best=-
+    n_cg=15  block C    sigma=1.60067449  matvecs=184  fd.best=-
+    n_cg=15  block D    sigma=0.61756931  matvecs=124  fd.best=8.59e-13
+    n_cg=15  block full sigma=3.12343510  matvecs=44  fd.best=-
+=== L1 block spectrum, n_cg=200 ===
+    n_cg=200  block A    sigma=0.91213307  matvecs=44  fd.best=1.79e-02
+    n_cg=200  block B    sigma=0.81492320  matvecs=44  fd.best=-
+    n_cg=200  block C    sigma=1.60067449  matvecs=184  fd.best=-
+    n_cg=200  block D    sigma=0.61756931  matvecs=124  fd.best=8.59e-13
+    n_cg=200  block full sigma=1.84508145  matvecs=104  fd.best=-
+=== alpha sweep at converged n_cg=200 ===
+    alpha=0.050 sigma=1.177316 proved_lb=0.1601
+    alpha=0.100 sigma=1.131949 proved_lb=0.3201
+    alpha=0.200 sigma=1.258945 proved_lb=0.6403
+    alpha=0.317 sigma=1.419071 proved_lb=1.0148
+    alpha=0.500 sigma=1.845081 proved_lb=1.6007
+    alpha=1.000 sigma=5.659355 proved_lb=3.2013
+[ngc done] 1049s

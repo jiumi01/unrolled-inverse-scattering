@@ -1,0 +1,5 @@
+﻿[L=0.5] refined sigma_max(Jk)=[22.646, 24.458, 5.915, 1.427, 18.703, 2.191, 6.337, 2.103] cycle_gain=33.229
+[L=0.75] refined sigma_max(Jk)=[48.661, 25.7, 4.87, 12.796, 5.215, 4.063, 6.941, 2.031] cycle_gain=114.238
+[L=1.0] refined sigma_max(Jk)=[31.008, 32.715, 29.151, 16.733, 16.55, 13.841, 10.288, 7.513] cycle_gain=178.867
+[L=1.5] refined sigma_max(Jk)=[31.501, 44.285, 26.691, 28.322, 26.329, 22.895, 19.621, 29.633] cycle_gain=747.760
+[done] 1334s -> results/contrast_sweep_gain_refined.json

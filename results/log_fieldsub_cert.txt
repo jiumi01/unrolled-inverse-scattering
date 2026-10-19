@@ -1,0 +1,7 @@
+[env] ||Gb||2=1.6606 device=cuda
+[model] ckpt_constrained_K8.pt (proj ON)
+[L=0.50] sup_k sigma_max(diag chi^k Gb)=0.6762 (layer 15)  max|chi|=0.5000 (layer 1)  beta0_meas=0.8286  trivial_ub=0.8286  <1? True
+[L=0.75] sup_k sigma_max(diag chi^k Gb)=0.7479 (layer 7)  max|chi|=0.5000 (layer 1)  beta0_meas=1.2420  trivial_ub=1.2420  <1? True
+[L=1.00] sup_k sigma_max(diag chi^k Gb)=0.7727 (layer 23)  max|chi|=0.5000 (layer 1)  beta0_meas=1.6555  trivial_ub=1.6555  <1? True
+[L=1.50] sup_k sigma_max(diag chi^k Gb)=0.7848 (layer 23)  max|chi|=0.5000 (layer 1)  beta0_meas=2.4824  trivial_ub=2.4824  <1? True
+[done] 394s -> results/fieldsub_cert.json

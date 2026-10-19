@@ -1,0 +1,23 @@
+{
+ "instrument": "_probe_T1_blockLL.py",
+ "probe": "falsification probe for DT_k = J + DH_k (round-3 referee R1, item T1)",
+ "operating_point": "init_state(model, y_test[:16]) of the K=8 constrained checkpoint, alpha=gamma=0.5, theta=1, layer k=0, float64",
+ "P0_rel_DT_minus_J_minus_DH_projON": 0.07465294403528863,
+ "P0_chi_block_projON": 0.04528276350271987,
+ "P0_w_block_projON": 0.0,
+ "P1_rel_DT_minus_J_minus_DH_projOFF": 9.324595387163504e-18,
+ "P1_chi_block_projOFF": 5.69979630974457e-18,
+ "P1_w_block_projOFF": 0.0,
+ "P1b_on_off_ratio": 8006025026893707.0,
+ "P2_lower_left_block_rel_error": 0.0,
+ "P3_sigma_max_DT_k0_projON": 3.058210382175227,
+ "P3_alpha_times_Ecal": 1.6006745079669278,
+ "P3_alpha_c_measured": 0.3123683156765377,
+ "P4_sigma_max_J_archive": 3.1234350992134585,
+ "P4_Lip_H_archive": 0.25033642299165115,
+ "P4_weyl_rhs": 2.873098676221807,
+ "P4_sigma_max_composite_archive": 3.1607140422408535,
+ "P4_weyl_met": true,
+ "P4_weyl_violated": false,
+ "all_assertions_passed": true
+}

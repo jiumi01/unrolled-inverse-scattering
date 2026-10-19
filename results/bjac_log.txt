@@ -1,0 +1,49 @@
+Traceback (most recent call last):
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\spec_tools.py", line 108, in sigma_max_L
+    w = eigsh(J.MTM(), v0=v0, k=1, which="LM", tol=tol, maxiter=maxiter,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\up\miniconda3\envs\wirenet\Lib\site-packages\scipy\sparse\linalg\_eigen\arpack\arpack.py", line 1779, in eigsh
+    params.iterate()
+  File "C:\Users\up\miniconda3\envs\wirenet\Lib\site-packages\scipy\sparse\linalg\_eigen\arpack\arpack.py", line 627, in iterate
+    raise ArpackError(self.arpack_dict['info'],
+scipy.sparse.linalg._eigen.arpack.arpack.ArpackError: ARPACK error -9: Starting vector is zero.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\run_bjac.py", line 424, in <module>
+    main()
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\run_bjac.py", line 300, in main
+    rb = measure_layer(m, y_b, chi0, w0, ALPHA0, GAMMA0, born=True, power_iters=80)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\run_bjac.py", line 184, in measure_layer
+    s, nv, info = sigma_max_L(op, tol=SIGTOL)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\code\spec_tools.py", line 115, in sigma_max_L
+    eig = float((J.vjp(J.jvp(X)) * X).sum())
+                 ~~~~~~~~~~~~~~~~^~~
+RuntimeError: The size of tensor a (262144) must match the size of tensor b (16384) at non-singleton dimension 1
+ERROR conda.cli.main_run:execute(148): `conda run python -u code/run_bjac.py` failed. (See above for error)
+=== [L0] instrument validation ===
+  [check1] linear map: lanczos=1.7809702680 svd=1.7809704542 power=1.7800362110 rel.err=1.05e-07
+=== [L1] physics core blocks, alpha=gamma=0.50 ===
+    block A    sigma=0.846696 (power 0.846716)  matvecs=42  eigsh
+    block B    sigma=1.226094 (power 1.226041)  matvecs=42  eigsh
+    block C    sigma=1.577114 (power 1.572852)  matvecs=182  eigsh
+    block D    sigma=0.608679 (power 0.608285)  matvecs=82  eigsh
+    block full sigma=1.873293 (power 1.873328)  matvecs=62  eigsh
+  [check2] sigma_max(C): closed form=1.577114  Gram=1.577114  rel.err=0.00e+00  lanczos=1.577114
+  [check3] sigma_full=1.8733 >= max block=1.5771  -> True
+  max|E|=1.4100  max_r||E_.r||2=3.1542  ratio=2.2370  alpha_c=0.3170
+  sigma_D=0.6087 <= thm bound 0.9152 -> True
+=== [L2] alpha=gamma sweep (proved threshold) ===
+  alpha=0.050  sigma=22.7672  proved_lb=0.1577  
+  alpha=0.100  sigma=1.2388  proved_lb=0.3154  
+  alpha=0.200  sigma=1.4545  proved_lb=0.6308  
+  alpha=0.317  sigma=1.6094  proved_lb=0.9999  
+  alpha=0.400  sigma=1.7109  proved_lb=1.2617  PROVED>1
+  alpha=0.500  sigma=1.8733  proved_lb=1.5771  PROVED>1
+  alpha=0.750  sigma=3.9207  proved_lb=2.3657  PROVED>1
+  alpha=1.000  sigma=4.2717  proved_lb=3.1542  PROVED>1
+=== [L2b] Born-contrast variant (forces B=0 by linearising the data misfit) ===
+    block A    sigma=0.500000 (power 0.500000)  matvecs=42  eigsh

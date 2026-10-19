@@ -1,0 +1,11 @@
+=== K=8 cyclic composite: constrained (proj=True, float64) ===
+  sigma_max(composite)=8.727657 (power 8.727654) matvecs=44 eigsh
+  rho(composite)=0.546573 matvecs=39 eigs
+  rho_chi(composite)=0.430082  sigma_max(chi->chi)=1.091844  matvecs=39 eigs
+  transient ||J^m|| {'1': 8.72765716052275, '2': 76.17185355207386}  -> M_J=76.1719
+=== K=8 cyclic composite: unconstrained (proj=False, float64) ===
+  sigma_max(composite)=9.569790 (power 9.569778) matvecs=44 eigsh
+  rho(composite)=0.975784 matvecs=57 eigs
+  rho_chi(composite)=0.653552  sigma_max(chi->chi)=4.090665  matvecs=75 eigs
+  transient ||J^m|| {'1': 9.569790187424136, '2': 91.5811100769606}  -> M_J=91.5811
+[L4/L5 done] 2305s -> D:\workbudd成果\展开式逆散射网络的不动点与收敛性理论研究\results\L45.json

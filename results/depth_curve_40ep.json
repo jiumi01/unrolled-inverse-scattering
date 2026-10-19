@@ -1,0 +1,50 @@
+{
+ "epochs": 40,
+ "K": [
+  2,
+  4,
+  8,
+  16,
+  24
+ ],
+ "rre": {
+  "constrained_K2": 0.39106449484825134,
+  "constrained_K4": 0.38213200867176056,
+  "constrained_K8": 0.37184908986091614,
+  "constrained_K16": 0.3656681627035141,
+  "constrained_K24": 0.36846357583999634,
+  "unconstrained_K2": 0.36520278453826904,
+  "unconstrained_K4": 0.3619459420442581,
+  "unconstrained_K8": 0.34091971814632416,
+  "unconstrained_K16": 0.3359556794166565,
+  "unconstrained_K24": 0.33483053743839264
+ },
+ "arm_seed": 1234,
+ "note": "uniform 40-epoch schedule with an explicit per-arm seed, so across K only the depth varies (R2 m3.5 / Q3.4); the archive match is a comparability control, not an equality claim",
+ "replay_control": {
+  "max_drift": 0.010855674743652344,
+  "tolerance": 0.018113404512405396,
+  "tolerance_source": "results/repro_floor.json:abs_d_rre_K8.max",
+  "per_key_drift": {
+   "constrained_K2": 0.0002206265926361084,
+   "constrained_K4": 0.001996845006942749,
+   "constrained_K8": 0.0012061744928359985,
+   "unconstrained_K2": 0.0012599080801010132,
+   "unconstrained_K4": 0.010855674743652344,
+   "unconstrained_K8": 0.00022780895233154297
+  },
+  "passed": true
+ },
+ "archive_a": {
+  "constrained_K2": 0.39128512144088745,
+  "constrained_K4": 0.3801351636648178,
+  "constrained_K8": 0.37305526435375214,
+  "constrained_K16": 0.37370848655700684,
+  "constrained_K24": 0.37162721157073975,
+  "unconstrained_K2": 0.36646269261837006,
+  "unconstrained_K4": 0.3510902673006058,
+  "unconstrained_K8": 0.3411475270986557,
+  "unconstrained_K16": 0.346932977437973,
+  "unconstrained_K24": 0.34324032068252563
+ }
+}

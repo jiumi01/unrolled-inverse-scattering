@@ -1,0 +1,152 @@
+{
+ "mode": "constrained",
+ "batch": 16,
+ "alpha": 0.5,
+ "gamma": 0.5,
+ "protocol": "v2: Born-LS initial state held at n_cg=15 (the deployed operating point); only the layer-internal contrast-solve resolution varies.  v1 (state and layers both at ncg) was superseded: at n_cg=200 the Born-LS state itself changes, so v1's n_cg=200 records measured a different operating point (core 1.8451 / composite 38.3819); see results/log_gain_decomp_pair_full.txt.",
+ "instrument": "run_gain_decomp JacOp (exact jvp/vjp) + Lanczos, float64",
+ "records": {
+  "15": {
+   "core_sigma_full": 3.123435099191304,
+   "core_sigma_lanczos": 3.123435099191304,
+   "core_sigma_power": 3.1234456959276238,
+   "core_sigma_rel": 3.3926430460420476e-06,
+   "core_sigma_agrees": true,
+   "core_solver": "eigsh",
+   "composite_per_layer": [
+    3.0610849895939705,
+    3.1595567711695236,
+    3.1514701644790697,
+    3.0839098863778984,
+    3.0712305942755975,
+    3.054538740507813,
+    3.0486991001632626,
+    3.1607140435361862
+   ],
+   "composite_lanczos_per_layer": [
+    3.0610849895939705,
+    3.1595567711695236,
+    3.1514701644790697,
+    3.0839098863778984,
+    3.0712305942755975,
+    3.054538740507813,
+    3.0486991001632626,
+    3.1607140435361862
+   ],
+   "composite_power_per_layer": [
+    3.061098390888047,
+    3.159557881685287,
+    3.151467282196577,
+    3.083904502722715,
+    3.0712332744378186,
+    3.0545380732771017,
+    3.048695604979908,
+    3.1607199099997367
+   ],
+   "composite_rel_per_layer": [
+    4.377936402360488e-06,
+    3.514782146529206e-07,
+    9.145834617647983e-07,
+    1.7457238965423102e-06,
+    8.726664442438526e-07,
+    2.1843910580610103e-07,
+    1.1464507450253563e-06,
+    1.8560529618384604e-06
+   ],
+   "composite_agrees": [
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true,
+    true
+   ],
+   "composite_solver": [
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh"
+   ],
+   "composite_sigma_max": 3.1607140435361862,
+   "composite_sigma_power_max": 3.1607199099997367,
+   "all_solvers_agree": true
+  },
+  "200": {
+   "core_sigma_full": 1.8437341545767654,
+   "core_sigma_lanczos": 3.1371614837191166,
+   "core_sigma_power": 1.8437341545767654,
+   "core_sigma_rel": 0.41229223801670173,
+   "core_sigma_agrees": false,
+   "core_solver": "eigsh",
+   "composite_per_layer": [
+    1.8496064192407289,
+    1.844395349261248,
+    1.8537341699176728,
+    1.8426541750359202,
+    1.8623714113651737,
+    1.8519911045726831,
+    1.8623043217224846,
+    1.8355871601232727
+   ],
+   "composite_lanczos_per_layer": [
+    2.190926992315777,
+    1.9370843962610975,
+    1.9412749532153941,
+    1.9838276614364994,
+    2.1252908532145818,
+    2.710684609201168,
+    1.964426960936369,
+    1.8870001494774353
+   ],
+   "composite_power_per_layer": [
+    1.8496064192407289,
+    1.844395349261248,
+    1.8537341699176728,
+    1.8426541750359202,
+    1.8623714113651737,
+    1.8519911045726831,
+    1.8623043217224846,
+    1.8355871601232727
+   ],
+   "composite_rel_per_layer": [
+    0.1557882002787675,
+    0.047849772151773676,
+    0.04509447935374882,
+    0.07116217257418153,
+    0.12370986373546596,
+    0.31678104553872816,
+    0.05198596906102646,
+    0.027245885151837613
+   ],
+   "composite_agrees": [
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false,
+    false
+   ],
+   "composite_solver": [
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh",
+    "eigsh"
+   ],
+   "composite_sigma_max": 1.8623714113651737,
+   "composite_sigma_power_max": 1.8623714113651737,
+   "all_solvers_agree": false
+  }
+ }
+}

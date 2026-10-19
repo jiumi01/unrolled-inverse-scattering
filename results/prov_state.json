@@ -1,0 +1,41 @@
+{
+ "device": "cpu",
+ "layer": 3,
+ "state_diff": {
+  "chi_rel": 7.71131250628073e-06,
+  "w_rel": 7.711346803037362e-06,
+  "chi_max_abs_a": 0.5,
+  "chi_max_abs_b": 0.5,
+  "proj_a": true,
+  "proj_b": true,
+  "chi_max_attr_a": 0.5,
+  "chi_max_attr_b": 0.5,
+  "featbound_a": true,
+  "featbound_b": true,
+  "ncorr_a": 1,
+  "ncorr_b": 8
+ },
+ "sigma_at_layer": {
+  "driver_state_K1_model": {
+   "sigma": 3.083909886418289,
+   "power": 3.083904502722715,
+   "matvecs": 44
+  },
+  "probe_state_K8_model": {
+   "sigma": 3.080861267531672,
+   "power": 3.0808617241989653,
+   "matvecs": 44
+  }
+ },
+ "archive": {
+  "gain_decomp_C_layer_value": 3.083909886418289,
+  "gain_decomp_C_max": 3.1607140422408535,
+  "prov_init_layer_value": 3.080861267531672,
+  "prov_init_max": 3.156807101829948
+ },
+ "verdict": {
+  "states_identical": false,
+  "sigma_agrees_across_states": false,
+  "statement": "the states DIFFER: the provenance probe (not the archive) used the wrong operating point and must be corrected before any provenance claim is made"
+ }
+}

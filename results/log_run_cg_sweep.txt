@@ -1,0 +1,24 @@
+[part 1] local block spectra at a FIXED operating point (double precision)
+  n_cg=  5 resid=6.122e-03  C=0.9421 D=0.7710 | A=0.7324 B=0.0809 J=1.3303
+  n_cg= 10 resid=6.437e-04  C=0.9421 D=0.7710 | A=0.7328 B=0.1504 J=1.3302
+  n_cg= 15 resid=1.033e-04  C=0.9421 D=0.7710 | A=0.7950 B=0.8878 J=1.4678
+  n_cg= 30 resid=5.559e-07  C=0.9421 D=0.7710 | A=1.0564 B=1.4298 J=1.7708
+  n_cg= 50 resid=1.258e-08  C=0.9421 D=0.7710 | A=0.8046 B=0.6679 J=1.3767
+  n_cg=100 resid=2.206e-09  C=0.9421 D=0.7710 | A=0.9184 B=0.6858 J=2.0577
+  n_cg=200 resid=9.960e-10  C=0.9421 D=0.7710 | A=0.8443 B=0.7003 J=1.4125
+[part 2] train x eval truncation matrix
+  train15  n_cg=  5  RRE=0.4544  fp=1.193e-01
+  train15  n_cg= 10  RRE=0.4343  fp=1.261e-01
+  train15  n_cg= 15  RRE=0.4243  fp=1.312e-01
+  train15  n_cg= 30  RRE=0.4126  fp=1.422e-01
+  train15  n_cg= 50  RRE=0.4115  fp=1.430e-01
+  train15  n_cg=100  RRE=0.4115  fp=1.430e-01
+  train15  n_cg=200  RRE=0.4115  fp=1.430e-01
+  train200  n_cg=  5  RRE=0.4392  fp=9.175e-02
+  train200  n_cg= 10  RRE=0.4201  fp=1.003e-01
+  train200  n_cg= 15  RRE=0.4105  fp=1.064e-01
+  train200  n_cg= 30  RRE=0.3987  fp=1.199e-01
+  train200  n_cg= 50  RRE=0.3978  fp=1.208e-01
+  train200  n_cg=100  RRE=0.3978  fp=1.208e-01
+  train200  n_cg=200  RRE=0.3978  fp=1.208e-01
+[cg_sweep done] 1022s
