@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 """
-run_grid_study.py — R6 supplementary experiment (ChatGPT review, item VII-1).
+run_grid_study.py — Grid refinement study.
 
 Question addressed
 ------------------
-ChatGPT flagged that the study uses a single discretisation (32x32 @ 0.02 lambda)
-and asked for 32/64/128 grids with ||Gb||2, beta0, the non-contractivity
-threshold and the measured Jacobian indices recomputed.
+The study uses a single discretisation (32x32 @ 0.02 lambda); this script recomputes
+||Gb||2, beta0, the non-contractivity threshold and the measured Jacobian indices
+at 32/64/128 grids.
 
 Design (physically matched refinement)
 --------------------------------------

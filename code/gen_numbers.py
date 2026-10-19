@@ -905,7 +905,7 @@ def main():
         # run_gain_decomp vs the alpha=0.5 row of run_prec_audit (independent driver, same
         # operator construction).  This replaces the retired archive-to-archive 1.2% claim.
         "NumGdVsPaPct": F(100.0 * abs((gd_get("A_physics_core.sigma_max_full") or 0.0)
-                                      - (_f64_half or 0.0)) / (_f64_half or 1.0), 2),
+                                      - (_f64_half or 0.0)) / (_f64_half or 1.0), 2),
         # and the third evaluation (run_bjac) against the same reference: the sentence quotes
         # "three independent float64 evaluations", so it needs a number for each pair rather than
         # one pair standing in for three.
@@ -936,9 +936,9 @@ def main():
     }
     macros.update(indep)
 
-    # ---- R6 supplementary: grid robustness, contrast-solve sweep, CSI/SOM ----------
-    # (ChatGPT external review items VII-1, VII-4, VIII-7.  Each is a separate driver
-    #  writing its own JSON; a missing file degrades to the explicit placeholder.)
+    # ---- Supplementary: grid robustness, contrast-solve sweep, CSI/SOM ----------
+    # Each is a separate driver writing its own JSON; a missing file degrades to
+    # the explicit placeholder.
     gstudy = load("grid_study.json") or {}
     cgsw = load("cg_sweep.json") or {}
     csom = load("csi_som.json") or {}

@@ -1,5 +1,7 @@
 # Unrolled Born/Contrast-Source Inverse Scattering Networks
 
+**Author:** Longgang Wang
+
 Code and numerical results for the paper on fixed points, certified boundedness, and noise
 sensitivity of deep-unrolled inverse-scattering networks.
 

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-run_csi_som.py — R6 supplementary experiment (ChatGPT review, item VIII-7).
+run_csi_som.py — Classical baselines: CSI and SOM.
 
 Two STANDARD, stronger classical inverse-scattering baselines alongside the paper's
 damped alternating iteration:

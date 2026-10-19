@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-run_cg_sweep.py — R6 supplementary experiment (ChatGPT review, items VI & VIII-1).
+run_cg_sweep.py — CG iteration convergence sweep.
 
 Question addressed
 ------------------
