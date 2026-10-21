@@ -72,4 +72,21 @@ to be calibrated to.
 \caption{First-layer gradient norm versus the truncated depth used in the backward pass.}
 \end{figure}
 
+\section{Driver provenance for Table~\ref{tab:cert}}
+
+The block notation is that of Lemma~4.1 in the main text; the \emph{Proved}/\emph{Measured} tags
+carry the meaning stated in the table caption. Contrast-path rows ($A$, $B$, layer norm) are
+quoted at a \emph{converged} contrast solve, with the as-implemented $n_{\mathrm{cg}}$ values
+listed separately in the main text (convergence control); the field quantities
+$\mathcal{E}$ and $\alpha_c$ are read at that same converged solve, i.e.\ from the
+$n_{\mathrm{cg}}$-sweep driver, which is a different driver and contrast sample from the grid
+study. The composite rows ($\rho_\chi$, $\rho$, $M_J$, the gap, composite $\sigma_{\max}$) are
+evaluated at the \emph{trained per-layer} step sizes from the double-precision composite audit,
+a different operator from the per-layer rows. Row~1 is one quantity shown in two columns,
+because the design value and the certificate are the same expression, and it is not two
+independent checks. The $\Lambda$ row quotes only the \emph{field} term; with
+$\prod_i\norm{W_i}_2\le1$ from the spectral clamp the omitted additive term is at most
+$\norm{\mathbf{G}_s}_2\bar\epsilon/s_{\mathrm{res}}$, i.e.\ a small fraction of the field term,
+so the tabulated value is the field term and the true bound is the sum.
+
 \end{document}

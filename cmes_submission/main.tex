@@ -242,11 +242,11 @@ formal guarantee for the trained iteration.}
 \toprule
 Method / family & Property proved & Setting it applies to & Relation to this work \\
 \midrule
-SOM-Net \cite{somnet}, kernelised SOM \cite{kernelunroll} & none (empirical) &
+SOM-Net \cite{somnet}, kernelised SOM \cite{kernelunroll} & None (empirical) &
 subspace-based SOM kernel & the \emph{template} transfers (certify the rollout from a
 closed-form block plus a CG-free field block); the certificates
 $C=\theta\alpha\,\mathrm{diag}(E)$ do not \\
-Unrolled CNN \cite{unrolledcnn}, NeuralBIM \cite{neuralbim,mfneuralbim} & none (empirical) &
+Unrolled CNN \cite{unrolledcnn}, NeuralBIM \cite{neuralbim,mfneuralbim} & None (empirical) &
 CSI / Born-iterative kernel & \emph{same} kernel family: the per-layer impossibility and
 the certificates apply once the two budgets of the constrained scheme hold \\
 CIE-SOM-NET \cite{ciesomnet} & contraction of the \emph{physical} integral equation &
@@ -614,7 +614,7 @@ produces an \emph{incidence-stacked} field block: it is a direct sum over cells 
 map $\delta\chi_r\mapsto\theta\alpha E_{\cdot,r}\,\delta\chi_r$, where $E_{\cdot,r}\in\C^{n_{\mathrm{inc}}}$
 is the $r$-th column of $E$. Its singular values are therefore
 $\theta\alpha\norm{E_{\cdot,r}}_2$, $r=1,\dots,n$, with $\norm{\cdot}_2$ taken \emph{along the
-incidence axis}. Second, the quantity $\max_r|E(r)|$ (the $\ell_\infty$ norm of the field) is a
+incidence axis}. Second, the field $\ell_\infty$ norm $\max_r|E(r)|$ is a
 different object and satisfies
 $\max_r|E(r)|\le\max_r\norm{E_{\cdot,r}}_2\le\sqrt{n_{\mathrm{inc}}}\,\max_r|E(r)|$; in our
 discretization the two differ by a factor of $\numv{\NumEInfRatio}$. Every norm statement below is
@@ -659,8 +659,8 @@ such correction restores $\sigma_{\max}(DT_k)<1$: the obstruction acts in the
 $\chi\!\to\!w$ channel, which a correction applied to the contrast alone cannot reach. The
 threshold is a \emph{sufficient} condition for non-contractivity and not a necessary one: above
 $\alpha_c$ non-contractivity is proved for every admissible correction, below it the lower bound
-in \eqref{eq:impossbound} no longer exceeds one and the question is settled numerically rather
-than analytically, as Fig.~\ref{fig:alphac} does.
+in \eqref{eq:impossbound} no longer exceeds one and the question is settled numerically at the
+operating points reported in the experimental section.
 \end{Proposition}
 \begin{proof}
 All three bounds are instances of the same elementary fact: for a test vector supported on a single
@@ -688,7 +688,7 @@ Weyl's inequality applied to the additive splitting $DT_k=J+DH_k$ would give
 $\sigma_{\max}(DT_k)\ge\sigma_{\max}(J)-\operatorname{Lip}(H_k)$. That splitting is precisely what
 \eqref{eq:dTvsJ} rules out, so the inequality is not applicable here and we do not invoke it.
 The three quantities in the comparison are nevertheless reported, because they come from
-\emph{one} driver and \emph{one} state, the constrained arm of \texttt{gain\_decomp.json}, at
+\emph{one} audit run on \emph{one} state, the constrained arm at
 the learned step sizes and the implemented $n_{\mathrm{cg}}$, so that the comparison is well
 posed in the first place:
 $\sigma_{\max}(J)=\numv{\NumGdPhysSigma}$,
@@ -719,14 +719,15 @@ $\sigma_{\max}(J(\alpha))\ge1-\theta\alpha(1+\beta_0)$, obtained from
 $\sigma_{\max}(J)\ge\sigma_{\min}(D)\ge1-\theta\alpha(1+\beta_0)$, where
 $\sigma_{\min}(D)$ is the smallest singular value of the direct block $D$. \emph{(b) The bound is stated
 per operating point and evaluated numerically.} $\mathcal{E}$, $\sigma_{\max}(A)$ and
-$\sigma_{\max}(B)$ depend on $z$; we therefore report them at the operating points actually reached, tabulated in Table~\ref{tab:cert}, rather than as $z$-independent constants, and we state the $\alpha$
+$\sigma_{\max}(B)$ depend on $z$; we therefore report them at the operating points actually reached,
+in the experimental section, rather than as $z$-independent constants, and we state the $\alpha$
 dependence explicitly rather than folding it into a single number. The threshold
 $\alpha_c=(\theta\mathcal{E})^{-1}$ further inherits the field normalisation: with the incident field
 scaled to unit peak, $\mathcal{E}=\max_r\|E_{\cdot,r}\|_2$ scales with the number of illuminations as
 $\sqrt{n_{\mathrm{inc}}}$, so comparisons of $\alpha_c$ across configurations must be read together
 with their $n_{\mathrm{inc}}$ and normalisation, not as pure architecture statements. \emph{(c) Below $\alpha_c$ the
 bound is inconclusive, so we measure.} For $\alpha\le\alpha_c$ nothing follows from
-\eqref{eq:impossbound}; Fig.~\ref{fig:alphac} and Table~\ref{tab:cert} report the measured
+\eqref{eq:impossbound}; the experimental section reports the measured
 $\sigma_{\max}(J(\alpha))$ on a grid $\alpha\in[0.05,1]$, marking on which side of $\alpha_c$ each
 point lies. \emph{(d) The obstruction is bilinear, not an artefact of the data-misfit
 nonlinearity.} Replacing the self-consistent field in the contrast step by the fixed incident field
@@ -898,7 +899,8 @@ matrix, whose smallest eigenvalue is $\numv{\NumLamMin}$; substituting $\beta_0$
 the radius is therefore unjustified, and $\bar\epsilon/(1-\beta_0)$ must not be quoted as an
 ``a-priori drift radius''. For both $F$ and $\hat G$ we report two numbers, the $\sigma_{\max}$ of
 the $\chi\!\to\!\chi$ block and the norm of the whole $\chi$-row $[A\,B]$, the latter being the
-Lipschitz constant of the $\chi$-map and the former only a lower bound on it, as Table~\ref{tab:cert} shows. These numbers do \emph{not} all fall on one side of one: in the constrained arm
+Lipschitz constant of the $\chi$-map and the former only a lower bound on it, as reported in the
+experimental section. These numbers do \emph{not} all fall on one side of one: in the constrained arm
 every pair is below one (on $\hat G$, $\numv{\NumRhoChiCons}$ and $\numv{\NumChiLipRowCons}$; on $F$,
 $\numv{\NumChiFBlockCons}$ and $\numv{\NumChiLipRowFCons}$), so nothing measured there refutes
 $\rho_\chi<1$, whereas in the unconstrained arm the row norm of $\hat G$ reaches
@@ -912,7 +914,7 @@ Corollary~\ref{cor:fidelity} supplies \emph{no} finite a-priori radius, and repo
 $\rho_\chi$ in its place is the accounting we use.
 
 Second, the conditional character of Corollary~\ref{cor:fidelity} is a direct price of modelling
-multiple scattering. In the Born (single-scattering) linearization the field used by the contrast
+multiple scattering. In the single-scattering Born linearization the field used by the contrast
 step is the fixed $E^i$, so $\partial\hat\chi^{\mathrm{LS}}/\partial\chi=0$, $F$ is a constant map,
 $\rho_\chi=0$, and \eqref{eq:fidelity} becomes the unconditional radius $\bar\epsilon$. It is
 precisely the self-consistency of $E$ with $\chi$, the feature that makes the method work for
@@ -956,7 +958,7 @@ $\sigma_{\max}(J)=\numv{\NumPhysSigma}$ at $\alpha=\gamma=\tfrac12$ and
 $L\in[\numv{\NumSigMin},\numv{\NumSigMax}]$ over the converged fixed-step grid of
 $\numv{\NumAlphaSweepN}$ discrete step sizes spanning $\alpha=\gamma\in[0.05,1]$, \emph{every}
 point of which is non-contractive, not only those
-above $\alpha_c$ in Table~\ref{tab:cert}; at the learned step sizes the $K{=}8$ cyclic composite
+above $\alpha_c$ as measured in the experimental section; at the learned step sizes the $K{=}8$ cyclic composite
 is $\numv{\NumSigCompCons}$. We therefore do not present $\Lambda/(1-\rho)$ as a result about this
 architecture; it is stated only to expose the hypothesis, which is contradicted by the same
 experiments that would otherwise be cited in its support. The operative statement is
@@ -1004,7 +1006,7 @@ operators, and the layer map here is emphatically non-normal. The cost of that r
 measurable, and we measure its ingredients: for the $K{=}8$ cyclic composite
 $M_J=\numv{\NumMJCons}$, a lower bound on $\kappa_2(V)$ (Remark~\ref{rem:mj}), against
 $\rho=\numv{\NumRhoComp}$ and $\sigma_{\max}=\numv{\NumSigCompCons}$, giving a non-normality gap
-$\sigma_{\max}/\rho=\numv{\NumGapRatio}$ in Table~\ref{tab:cert}. These three belong to one and
+$\sigma_{\max}/\rho=\numv{\NumGapRatio}$ as reported in the experimental section. These three belong to one and
 the same operator, the composite Jacobian of the $K{=}8$ rollout, and are reported
 together for that reason; the per-layer value at fixed $\alpha=\gamma=\tfrac12$,
 $\numv{\NumSigCompLayerCons}$, is a different operator and is listed separately. This is the quantitative measure of
@@ -1065,7 +1067,7 @@ $\lambda_{\min}(A)\ge c_{\mathrm{cg}}\min_j\sum_i|E_{ij}|^{2}\norm{\mathbf{G}_s(
 the implementation adds, and the correction channel by the amplitude budget. Measured directly,
 $\Lambda=\numv{\NumLambdaMeas}$ against the contrast-channel bound $\numv{\NumLambdaBound}$ with
 $\lambda_{\min}(A)=\numv{\NumLamMin}$ and $s_{\mathrm{res}}=\numv{\NumScaleRes}$
-in Table~\ref{tab:cert}; the correction term is negligible at the trained weights. Equation
+in the experimental section; the correction term is negligible at the trained weights. Equation
 \eqref{eq:Lambda} replaces an earlier assertion of ours that $\Lambda$ is bounded ``by construction'':
 the construction is \eqref{eq:Lambda}, and it is only as good as the Tikhonov floor, so
 $\lambda_{\mathrm{rel}}$ must not be driven to zero.
@@ -1089,7 +1091,7 @@ cannot lower the best attainable data misfit over the class, and cannot raise th
 either, since the radius depends on the drift $\delta_{\mathrm{GF}}$ alone and not on the trunk amplitude budget $\bar\epsilon$, whose relation to the drift is not established here.
 The two budgets therefore act through disjoint knobs, magnitude controls the certificate, slope
 controls which corrections are representable, and there is no single ``tightening'' that improves
-both. Empirically, as Fig.~\ref{fig:pareto} shows, over
+both. Empirically, as shown in the experimental section, over
 $\bar\epsilon\in[\numv{\NumEbWorst},\numv{\NumEbBest}]$ both the reconstruction error and the
 noise sensitivity improve as $\bar\epsilon$ grows, i.e.\ the magnitude budget is \emph{not} the
 binding constraint in this regime; the binding trade-off is the one between the budgeted and the
@@ -1134,7 +1136,7 @@ $[-1,1]$, so the trunk input is bounded uniformly over the state, which is what 
 amplitude budget $\bar\epsilon$ attainable by construction and what prevents the correction from
 growing with the state. The nominal slope budget is not the realised one: the operators certified at inference time are
 the \emph{measured} $\ell=\operatorname{Lip}(H_k)$ and
-$\bar\epsilon$, reported in Table~\ref{tab:cert}.
+$\bar\epsilon$, reported in the experimental section.
 \end{Remark}
 
 \begin{Remark}[Relation to LISTA coupling]
@@ -1176,7 +1178,7 @@ spectral norms of the kernels. Clamping every output-row block of each kernel to
 $\operatorname{Lip}(H_k)\le\bar\epsilon$; this is a design target on the per-kernel
 operator norms, whereas the quantity that enters Prop.~\ref{prop:imposs} and
 Cor.~\ref{cor:fidelity} is the \emph{measured} $\operatorname{Lip}(H_k)$ of the composed trunk,
-which we report in Table~\ref{tab:cert} and do not assume. The two knobs are independent:
+which we report in the experimental section and do not assume. The two knobs are independent:
 $\bar\epsilon$ fixes \emph{how much} the network may move the physical fixed point, as Cor.~\ref{cor:fidelity} bounds it; the spectral clamp controls \emph{how fast} successive layers may move
 it.
 
@@ -1508,7 +1510,7 @@ imaging result.
 \subsection{Certified and measured spectral quantities}
 
 \emph{Reproducibility.} Every quantity in Table~\ref{tab:cert} is produced by a single audit
-driver. Its forward operator products are exact (\texttt{torch.func.jvp}) and its adjoints are
+driver. Its forward operator products use exact \texttt{torch.func.jvp} derivatives and its adjoints are
 exact reverse-mode derivatives, both wrapped in a matrix-free operator, so no spectral estimate
 is contaminated by finite-difference truncation: $\sigma_{\max}$ is obtained by Lanczos/IRAM on
 $J^{\!\top}\!J$, the spectral radius by IRAM on $J$, and the transient factor $\sup_m\|J^m\|$ by
@@ -1542,7 +1544,7 @@ $\numv{\NumOpPrecRel}$, whereas one layer applied to the \emph{same} state diffe
 $\numv{\NumLayerPrecAmp}$, the $\numv{\NumNCg}$-step CG solve amplifying a
 $\numv{\NumOpPrecRel}$ arithmetic difference. That single-precision value is kept in the
 archived results as evidence of the artefact, not used. The mapping between these derivations, the numbered statements of this paper and the functions implementing them is recorded in the repository given in the data-availability statement.
-The block notation is that of Lem.~\ref{lem:blocks}; the \emph{Proved}/\emph{Measured} tags carry the meaning stated in the caption of Table~\ref{tab:cert}. Contrast-path rows ($A$, $B$, layer norm) are quoted at a \emph{converged} contrast solve, with the as-implemented $n_{\mathrm{cg}}=\numv{\NumNCg}$ values listed separately in Sec.~\ref{sec:exp} (convergence control); the field quantities $\mathcal{E}=\numv{\NumEColMax}$ and $\alpha_c=\numv{\NumAlphaC}$ are read at that same converged solve, i.e.\ from the $n_{\mathrm{cg}}$-sweep driver, which is a different driver and contrast sample from the grid study of Table~\ref{tab:grid}. The composite rows ($\rho_\chi$, $\rho$, $M_J$, the gap, composite $\sigma_{\max}$) are evaluated at the \emph{trained per-layer} step sizes from the double-precision composite audit, a different operator from the per-layer rows. Row~1 is one quantity shown in two columns, because the design value and the certificate are the same expression, and it is not two independent checks. The $\Lambda$ row quotes only the \emph{field} term of \eqref{eq:Lambda}; with $\prod_i\norm{W_i}_2\le1$ from the spectral clamp the omitted additive term is at most $\norm{\mathbf{G}_s}_2\bar\epsilon/s_{\mathrm{res}}=\numv{\NumLamCorrTerm}$, i.e.\ \numv{\NumLamCorrRatio} of the field term, so the tabulated value is the field term and the true bound is $\Lambda\le\numv{\NumLambdaBound}+\numv{\NumLamCorrTerm}$. Table~\ref{tab:cert2} collects the composite, fidelity and noise rows measured at the trained step sizes. The two driver groups are not term-by-term comparable; their provenance is recorded below.
+The driver provenance and row-by-row notes for Table~\ref{tab:cert} are collected in the Supplementary Material.
 
 \begin{table}[htbp]
 \centering
@@ -2102,8 +2104,8 @@ FoamTwinDiel, $4\,\mathrm{GHz}$  & 0.108 & 0.502 & 0.161 & 2.50 & 0.093 \\
 \includegraphics[width=\linewidth]{figures/fig_fresnel_recon.pdf}
 \caption{Measured-data reconstruction at $3\,\mathrm{GHz}$, one row per published phantom. The
 columns are an algorithmic ladder computed on the same measured field, calibration constant,
-projection box and CG solve: published phantom, adjoint (one CG step), Born ($15$ CG steps at the
-incident field), and the $30$-layer contrast-source kernel. All panels share one grey scale
+projection box and CG solve: the published phantom, a one-CG-step adjoint, a $15$-CG-step Born
+solve at the incident field, and the $30$-layer contrast-source kernel. All panels share one grey scale
 $[0,1]$, so the adjoint column is not empty but strongly shrunk
 ($\max|\chi|\le\numv{\NumFrBaseDsmPeakHi}$). Corner values are the relative error and the
 label-free data residual.}
@@ -2159,7 +2161,8 @@ feature map does not.
 
 \section{Discussion and Limitations}\label{sec:lim}
 Our results certify a \emph{regime}, not every regime, and several findings are negative.
-(i) Per-layer Euclidean contraction is impossible on $\alpha>\alpha_c$ by Prop.~\ref{prop:imposs}, with the
+
+\noindent\textbf{(i)} Per-layer Euclidean contraction is impossible on $\alpha>\alpha_c$ by Prop.~\ref{prop:imposs}, with the
 threshold $\alpha_c=(\theta\mathcal{E})^{-1}$ measured here as $\numv{\NumAlphaC}$; and the geometric
 bounds that would follow from contraction, the drift radius $\bar\epsilon/(1-\rho_\chi)$ and the
 noise gain $\Lambda/(1-\rho)$, are therefore \emph{conditional}, and the hypotheses are not all
@@ -2271,13 +2274,26 @@ whole of the a-priori content. Carrying the certificate to a kernel whose field 
 one, and discharging the $\chi$-map hypothesis instead of bounding it, are the two directions in
 which the boundary now moves.
 
-\acknowledgement{Not applicable.}
+\noindent\textbf{Statement of Novelty.}
+(1) We prove that the Born/contrast-source unrolled layer is provably non-contractive above an
+explicit step-size threshold, because the bilinear coupling block is exactly
+$\theta\alpha\,\mathrm{diag}(E)$; this obstruction has not been identified in prior unrolling
+work. (2) We supply a layer-wise certification framework: a field-subsystem contraction condition
+$\beta_0<1$, an invariant compact set under a nonexpansive contrast projection, and an exact
+finite-depth noise account that exposes the non-normal factor a naive geometric sum omits.
+
+\noindent\textbf{(3)} We delimit what is and is not certified: the geometric radii are conditional and the
+$\rho_\chi$ contraction hypothesis is measured to fail at the operating point, so we report
+measured bounds rather than advertising guarantees. (4) The framework is validated on synthetic
+2-D TM scattering with four baselines and on the published Institut Fresnel measured geometry.
+
+\acknowledgement{During the preparation of this manuscript, the authors used DeepSeek-V4.1-Flash, an AI-assisted writing tool, for language polishing, LaTeX formatting support, and generating figures from numerical data supplied by the authors. The authors have reviewed and edited all content and take full responsibility for the publication.}
 
 \funding{This research was supported by the Science and Technology Research Project of Henan Province, China, under Grant Nos.\ 262102210030 and 242102321138.}
 
 \authorcontributions{The authors confirm contribution to the paper as follows: conceptualization, Longgang Wang; methodology, Longgang Wang; software, Guoqiang Wang; validation, Guoqiang Wang and Nianfeng Shi; formal analysis, Longgang Wang; investigation, Guoqiang Wang and Nianfeng Shi; resources, Nianfeng Shi; data curation, Guoqiang Wang; writing---original draft preparation, Longgang Wang; writing---review and editing, Longgang Wang and Guoqiang Wang; visualization, Guoqiang Wang; supervision, Longgang Wang; project administration, Longgang Wang; funding acquisition, Longgang Wang. All authors reviewed and approved the final version of the manuscript.}
 
-\availabilityofdataandmaterials{The code and numerical logs that support the findings of this study are openly available in the GitHub repository at \url{https://github.com/jiumi01/unrolled-inverse-scattering} (tag v1.1). The measured Institut Fresnel data set is available from the Institut Fresnel website.}
+\availabilityofdataandmaterials{The code and numerical logs that support the findings of this study are openly available in the GitHub repository at \url{https://github.com/jiumi01/unrolled-inverse-scattering} (tag v1.2). The measured Institut Fresnel data set is available from the Institut Fresnel website.}
 
 \ethicsapproval{Not applicable. The study involves no human participants, human tissue or animals; the measured fields used in Sec.~\ref{sec:fresnelrecon} are a public scattering database.}
 

@@ -1,0 +1,132 @@
+\documentclass[11pt]{article}
+\usepackage[a4paper,margin=1in]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{times}
+\usepackage{parskip}
+\usepackage[hidelinks]{hyperref}
+
+\begin{document}
+
+\begin{flushright}
+October 21, 2026
+\end{flushright}
+
+\vspace{0.5em}
+
+The Editor-in-Chief \\
+\textit{Computer Modeling in Engineering \& Sciences} (CMES) \\
+Tech Science Press
+
+\vspace{1em}
+
+Dear Editor,
+
+\vspace{0.5em}
+
+\textbf{Re: Submission of a new manuscript for consideration in CMES}
+
+We are pleased to submit our manuscript entitled \textit{``Fixed Points and Certified
+Boundedness of Unrolled Born/Contrast-Source Inverse Scattering Networks''} for
+consideration as a Research Article in \textit{Computer Modeling in Engineering \&
+Sciences}. The corresponding author is Longgang Wang (Luoyang Institute of Science
+and Technology, Luoyang 471000, Henan, China; email: longgangwang@163.com; ORCID:
+0009-0008-1394-7953).
+
+\subsection*{Originality and author approval}
+
+This manuscript is original and has not been published previously. It is not under
+consideration for publication elsewhere, in whole or in part. All authors have read
+the final manuscript and approved its submission to the journal. They accept full
+responsibility for the manuscript's delivery and contents. The work reports no human
+or animal subjects. There are no copyright or disclosure issues associated with the
+manuscript. All authors declare that they have no conflicts of interest regarding
+the submitted manuscript.
+
+\subsection*{What the paper contributes}
+
+Deep unrolling of classical iterative solvers is a leading design principle for
+electromagnetic inverse scattering, and unrolled architectures reported in the
+literature outperform their classical ancestors empirically. What has been missing is a
+layer-level account of \emph{why} such a network is stable, when it is provably not,
+and what can be certified about it. This paper supplies that account. Its four
+contributions, which mirror the manuscript's contribution list, are:
+
+\begin{enumerate}
+\item \textbf{Layer-level operator form.} The discrete Lippmann--Schwinger system is
+written as a fixed-point iteration of a physics operator $T^{\mathrm{phys}}$ on the
+state $z=(\chi,w)$; an unrolled network is exactly a cascade of layers
+$T_k=(1-\theta_k)I+\theta_k T^{\mathrm{phys}}_{\alpha_k,\gamma_k}+H_k$ with $H_k$ a
+learned correction, and the fixed points of the trained map are characterized exactly.
+
+\item \textbf{Impossibility of global contraction, in threshold form.} For the faithful
+Born/contrast-source composite, the bilinear coupling $\chi\odot E$ makes one block of
+the layer Jacobian \emph{exactly} $\theta\alpha\,\mathrm{diag}(E)$. Because that block
+belongs to the second block row, which the learned correction does not touch, the bound
+$\sigma_{\max}(DT_k)\ge\theta\alpha\mathcal{E}>1$ holds \emph{for every correction and
+every Lipschitz constant} above an explicit step-size threshold. Global Euclidean
+contraction is therefore unattainable on the measured step-size grid, and stability
+guarantees must be layered rather than global.
+
+\item \textbf{Layer-wise certification instead of per-layer contraction.} We prove
+what \emph{is} available: an a-priori field-subsystem contraction
+($\beta_0=\chi_{\max}\|\mathbf{G}_b\|_2<1$) that confines the rollout to an explicit
+compact set at arbitrary depth under a nonexpansive physics-prior projection, so
+infinite-depth extrapolation cannot diverge; an exact finite-depth noise accounting,
+including the non-normal factor $\kappa_2(V)$ that a naive $\Lambda/(1-\rho)$ omits;
+and an explicit constructive bound on the data-Lipschitz constant. The geometric bounds
+hold only \emph{conditionally}, and we demonstrate on our own measurements where their
+hypotheses fail. The certificates are recomputed at the operator level on the published
+Institut Fresnel geometry, where the weak-scattering condition fails while the
+non-contractivity bound tightens, and a reconstruction from measured fields is reported
+for nine phantom-frequency pairs without the trained weights.
+
+\item \textbf{The price of certification, measured.} Pre-registered ablations over 800
+unrolled layers isolate which ingredient delivers which guarantee: removing the
+projection from frozen weights makes the unconstrained network explode, and retraining
+without it restores empirical boundedness but pushes the measured contrast bound past
+the weak-scattering threshold, so no a-priori certificate survives. The amplitude
+budget buys the a-priori constants at a measurable accuracy cost, and bounding the
+correction trunk's input is what keeps the state inside the admissible box.
+\end{enumerate}
+
+The paper also reports a per-layer cost audit and an identical-seed reproducibility
+floor, so that each numerical claim can be traced to a script and an archived artifact.
+
+\subsection*{Why this journal}
+
+CMES publishes research of the highest quality in computational modeling and engineering
+sciences. Our contribution is squarely within its scope: methodologically, it combines
+operator theory of the discrete Lippmann--Schwinger formulation with contraction-mapping
+and spectral analysis to obtain fixed-point and boundedness certificates for unrolled
+inverse-scattering networks, and the certifying constants are computed on the 2-D TM
+method-of-moments scattering operator, an inverse/imaging problem in the journal's stated
+application domain. The framework is a reusable template that separates what can be
+certified from what is only measured.
+
+\subsection*{Data and code availability}
+
+All numerical instruments, experiment drivers, audit scripts, and a frozen snapshot with
+a standard \texttt{md5sum -c} manifest are listed in the manuscript's Data and Code
+Availability section. A public archive URL or persistent identifier will accompany the
+final version.
+
+\subsection*{Suggested reviewers}
+
+We are glad to suggest potential reviewers for this manuscript upon request.
+
+We thank you for considering our manuscript and look forward to your response.
+
+\vspace{1.5em}
+
+Sincerely,
+
+\vspace{1.5em}
+
+Longgang Wang \\
+on behalf of all authors \\
+Luoyang Institute of Science and Technology \\
+Luoyang 471000, Henan, China \\
+Email: longgangwang@163.com
+
+\end{document}
