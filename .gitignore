@@ -31,3 +31,7 @@ Thumbs.db
 .workbuddy/
 .vscode/
 .idea/
+
+# --- Submission package (manuscript & supplementary, not for code release) ---
+cmes_submission/
+chinese_version/
