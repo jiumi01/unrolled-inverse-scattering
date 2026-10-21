@@ -101,7 +101,7 @@ def main():
     # the mirror image of the same defect in _gate_mdpi.  The union MUST include paper_mdpi:
     # omitting it reproduces the very defect being fixed.  Per-tree orphans are kept as info.
     _union_src = ""
-    for paper in tuple(dict.fromkeys(tuple(PAPERS) + ("paper_mdpi",))):
+    for paper in tuple(dict.fromkeys(tuple(PAPERS) + ("paper_mdpi", "cmes_submission"))):
         _fp = os.path.join(ROOT, paper, "main.tex")
         if os.path.exists(_fp):
             _union_src += io.open(_fp, encoding="utf-8").read()

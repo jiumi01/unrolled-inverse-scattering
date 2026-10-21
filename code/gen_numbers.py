@@ -83,6 +83,12 @@ def Fsci(x, nd=1):
     return r"\ensuremath{%.*f\times10^{%d}}" % (nd, m, e)
 
 
+def _bx(d, key, field):
+    """Read one field of one arm of box_sweep.json, or None."""
+    v = (d.get("runs") or {}).get(key)
+    return (v or {}).get(field) if isinstance(v, dict) else None
+
+
 def main():
     meta = load("meta.json") or {}
     cls = load("classical_curve.json") or {}
@@ -94,6 +100,8 @@ def main():
     gn = load("gradnorm.json") or {}
     gd = load("gain_decomp.json") or {}
     abl = load("ablation.json") or {}
+    fbase = load("fresnel_baselines.json") or []   # measured-data baselines (Sec. 6.11)
+    boxsw = load("box_sweep.json") or {}           # E-class: certificate dose-response
     bj = load("bjac.json") or {}
     l45 = load("L45.json") or {}
     ngc = load("ngc.json") or {}          # contrast-solve convergence control (n_cg 15 vs 200)
@@ -128,6 +136,32 @@ def main():
     cls_best = cls.get(str(cls_best_K)) if cls_best_K else None
     cls8, cls100 = cls.get("8"), cls.get("100")
     price_delta = (abs(cons8 - unc8) if (cons8 is not None and unc8 is not None) else None)
+    # Which ingredient of the constrained arm costs accuracy?  The 2x2 factorial
+    # (ablation.json, seed 1, K=8, identical data/schedule) separates the amplitude
+    # budget from the projection, so the gap does not have to be attributed to
+    # "the constraint" wholesale.
+    def _abl_rre(key):
+        return (abl.get(key) or {}).get("rre_short")
+
+    def _abl_d(a, b):
+        x, y = _abl_rre(a), _abl_rre(b)
+        return (x - y) if (x is not None and y is not None) else None
+
+    abl_gap_budget = _abl_d("cons_pOn_fbOn_s1", "unc_pOn_fbOn_s1")
+    abl_gap_proj_unc = _abl_d("unc_pOn_fbOn_s1", "unc_pOff_fbOn_s1")
+    abl_gap_proj_cons = _abl_d("cons_pOff_fbOn_s1", "cons_pOn_fbOn_s1")
+
+    # measured-data algorithmic ladder at 3 GHz (adjoint, Born, archived kernel)
+    fbn = {}
+    for _arm in ("dsm", "born", "ours"):
+        for _f in ("rre", "r_net", "max_chi"):
+            _v = [r[_f] for r in fbase
+                  if r.get("arm") == _arm and r.get("freq") == 3.0
+                  and r.get(_f) is not None]
+            fbn[(_arm, _f, "lo")] = min(_v) if _v else None
+            fbn[(_arm, _f, "hi")] = max(_v) if _v else None
+    _kr = [r["r_net"] for r in (load("fresnel_recon_v2.json") or [])
+           if r.get("freq") == 3.0 and r.get("r_net") is not None]
     # Review m2.3/m3.3: the constrained--unconstrained accuracy gap is NOT uniform.
     # Report the range over every depth at which both arms were measured, and say
     # explicitly that the single number is the K=8 member of that range.
@@ -314,9 +348,30 @@ def main():
     def _sd(xs):
         return _st.pstdev(xs) if len(xs) > 1 else 0.0
 
+    def _mean(xs):
+        return _st.fmean(xs) if xs else 0.0
+
+    def _med(xs):
+        return _st.median(xs) if xs else 0.0
+
+    def _hiq(xs):
+        # upper quartile of a small sample: linear interpolation, stated as such in the text
+        return float(_st.quantiles(xs, n=4)[-1]) if len(xs) > 2 else (max(xs) if xs else 0.0)
+
+    def _seed_extrap(variant):
+        vals = []
+        for v in _sruns.values():
+            if v.get("variant") != variant:
+                continue
+            c = (v.get("extrap") or {}).get("rre")
+            if isinstance(c, (int, float)) and c == c:
+                vals.append(float(c))
+        return vals
+
     _cons_chi, _unc_chi = _seed_chi("constrained"), _seed_chi("unconstrained")
     _po_chi = _seed_chi("unc_projoff_fboff")
     _cons_rre, _unc_rre = _seed_rre("constrained"), _seed_rre("unconstrained")
+    _cons_ex, _unc_ex = _seed_extrap("constrained"), _seed_extrap("unconstrained")
     _seed_finite = [bool((v.get("extrap") or {}).get("finite")) for v in _sruns.values()]
 
     # ---- identical-seed reproducibility floor (round-3 R2 m2.5/Q3.2, R3 n3.1) ---------
@@ -752,6 +807,46 @@ def main():
         "NumPriceDelta": F(price_delta, 3),
         "NumPriceDeltaLo": F(gap_lo, 3),
         "NumPriceDeltaHi": F(gap_hi, 3),
+        # price attribution (2x2 factorial, K=8, seed 1)
+        "NumPriceBudget": F(abl_gap_budget, 4),
+        "NumPriceProjUnc": F(abl_gap_proj_unc, 4),
+        "NumPriceProjCons": F(abl_gap_proj_cons, 4),
+        # measured-data algorithmic ladder at 3 GHz (Fig. fresnelrecon)
+        "NumFrBaseDsmRreLo": F(fbn[("dsm", "rre", "lo")], 3),
+        "NumFrBaseDsmRreHi": F(fbn[("dsm", "rre", "hi")], 3),
+        "NumFrBaseDsmResLo": F(fbn[("dsm", "r_net", "lo")], 3),
+        "NumFrBaseDsmResHi": F(fbn[("dsm", "r_net", "hi")], 3),
+        "NumFrBaseDsmPeakHi": F(fbn[("dsm", "max_chi", "hi")], 2),
+        "NumFrBaseBornRreLo": F(fbn[("born", "rre", "lo")], 3),
+        "NumFrBaseBornRreHi": F(fbn[("born", "rre", "hi")], 3),
+        "NumFrBaseBornResLo": F(fbn[("born", "r_net", "lo")], 3),
+        "NumFrBaseBornResHi": F(fbn[("born", "r_net", "hi")], 3),
+        "NumFrKernRreLo": F(fbn[("ours", "rre", "lo")], 3),
+        "NumFrKernRreHi": F(fbn[("ours", "rre", "hi")], 3),
+        "NumFrKernResLo": F(min(_kr) if _kr else None, 3),
+        "NumFrKernResHi": F(max(_kr) if _kr else None, 3),
+        # E-class: contrast-box dose-response of the certificates
+        "NumBoxGb": F(boxsw.get("gb_norm"), 4),
+        "NumBoxEdge": F((boxsw.get("control") or {}).get("box_edge_beta0_one"), 4),
+        "NumBoxBetaSixty": F(_bx(boxsw, "box0.6", "beta0"), 4),
+        "NumBoxBetaEighty": F(_bx(boxsw, "box0.8", "beta0"), 4),
+        "NumBoxBetaHundred": F(_bx(boxsw, "box1.0", "beta0"), 4),
+        "NumBoxRreConsSixty": F(_bx(boxsw, "box0.6_constrained", "rre"), 4),
+        "NumBoxRreConsEighty": F(_bx(boxsw, "box0.8_constrained", "rre"), 4),
+        "NumBoxRreConsHundred": F(_bx(boxsw, "box1.0_constrained", "rre"), 4),
+        "NumBoxRreUncSixty": F(_bx(boxsw, "box0.6_unconstrained", "rre"), 4),
+        "NumBoxRreUncEighty": F(_bx(boxsw, "box0.8_unconstrained", "rre"), 4),
+        "NumBoxRreUncHundred": F(_bx(boxsw, "box1.0_unconstrained", "rre"), 4),
+        "NumBoxChiConsSixty": F(_bx(boxsw, "box0.6_constrained", "maxabs_chi_over"), 3),
+        "NumBoxChiConsEighty": F(_bx(boxsw, "box0.8_constrained", "maxabs_chi_over"), 3),
+        "NumBoxChiConsHundred": F(_bx(boxsw, "box1.0_constrained", "maxabs_chi_over"), 3),
+        "NumBoxChiUncSixty": F(_bx(boxsw, "box0.6_unconstrained", "maxabs_chi_over"), 3),
+        "NumBoxChiUncEighty": F(_bx(boxsw, "box0.8_unconstrained", "maxabs_chi_over"), 3),
+        "NumBoxChiUncHundred": F(_bx(boxsw, "box1.0_unconstrained", "maxabs_chi_over"), 3),
+        "NumBoxFinite": str(sum(1 for k, v in (boxsw.get("runs") or {}).items()
+                                if isinstance(v, dict) and v.get("finite_extrap"))),
+        "NumBoxRuns": str(sum(1 for k, v in (boxsw.get("runs") or {}).items()
+                              if isinstance(v, dict) and "rre" in v)),
         # depth-curve schedule control: archive (40/30 mixed) vs uniform 40 epochs (R2 m3.5)
         # Names say "Delta ... Pct" and not "Uptick": the quantity is a SIGNED relative change
         # from K=16 to K=24, and under the uniform schedule it is negative, so "uptick" would be
@@ -868,6 +963,16 @@ def main():
         "NumSeedNProjOff": str(len(_po_chi)) if _po_chi else "--",
         "NumSeedRreSdCons": F(_sd(_cons_rre), 4),
         "NumSeedRreSdUnc": F(_sd(_unc_rre), 4),
+        "NumSeedRreMeanCons": F(_mean(_cons_rre), 4),
+        "NumSeedRreMeanUnc": F(_mean(_unc_rre), 4),
+        "NumSeedRreMedCons": F(_med(_cons_rre), 4),
+        "NumSeedRreMedUnc": F(_med(_unc_rre), 4),
+        "NumSeedRreHiCons": F(_hiq(_cons_rre), 4),
+        "NumSeedRreHiUnc": F(_hiq(_unc_rre), 4),
+        "NumSeedExMeanCons": F(_mean(_cons_ex), 4),
+        "NumSeedExMeanUnc": F(_mean(_unc_ex), 4),
+        "NumSeedExSdCons": F(_sd(_cons_ex), 4),
+        "NumSeedExSdUnc": F(_sd(_unc_ex), 4),
         "NumSeedChiConsMax": F(max(_cons_chi), 2) if _cons_chi else "--",
         "NumSeedChiUncMax": F(max(_unc_chi), 2) if _unc_chi else "--",
         "NumSeedProjOffBox": R(_po_chi, 2),
@@ -961,6 +1066,12 @@ def main():
     Dvals = [r.get("D") for r in cf if r.get("D") is not None]
     Avals = [r.get("A") for r in cf if r.get("A") is not None]
     Bvals = [r.get("B") for r in cf if r.get("B") is not None]
+    # Full-layer sigma_max is the one sweep quantity that mixes A and B with the CG-free
+    # blocks; it is reported (never certified) so that the reader can see the truncation
+    # artefact reach the layer norm itself.  Two operating points, both quoted.
+    Fvals = [r.get("full") for r in cf if r.get("full") is not None]
+    Fbm = [r.get("full") for r in (cgsw.get("local_point4_layer") or [])
+           if r.get("full") is not None]
     te = cgsw.get("train_eval") or {}
     _r15 = (te.get("train15") or {}).get("200", {}).get("rre")
     _r15a = (te.get("train15") or {}).get("15", {}).get("rre")
@@ -1040,6 +1151,10 @@ def main():
         "NumCgAMax": F(max(Avals) if Avals else None, 3),
         "NumCgBMin": F(min(Bvals) if Bvals else None, 3),
         "NumCgBMax": F(max(Bvals) if Bvals else None, 3),
+        "NumCgFullMin": F(min(Fvals) if Fvals else None, 4),
+        "NumCgFullMax": F(max(Fvals) if Fvals else None, 4),
+        "NumCgFullFaithLo": F(min(Fbm) if Fbm else None, 4),
+        "NumCgFullFaithHi": F(max(Fbm) if Fbm else None, 4),
         "NumCgCFlatPct": F(_pctdrift(max(Cvals), min(Cvals)) if Cvals else None, 2),
         "NumCgDFlatPct": F(_pctdrift(max(Dvals), min(Dvals)) if Dvals else None, 2),
         "NumCgRImplImpl": F(_r15a, 4),
@@ -1054,6 +1169,12 @@ def main():
         "NumCgLossConv": F(cgloss.get("train200"), 5),
         "NumCgLossRatio": F(cgloss.get("ratio"), 1),
         "NumBornInitRre": F(csom.get("born_init_rre"), 4),
+        # Measured wall-clock of a complete K=100 sweep over the same 100 test samples
+        # (results/csi_som.json, totals_s).  Reported as a scale reference only; it is NOT
+        # converted into a speed-up, because the unrolled arms were timed per layer at a
+        # different batch size.
+        "NumCsiSecHundred": F(((csom.get("csi") or {}).get("100") or {}).get("wallclock_s"), 1),
+        "NumSomSecHundred": F((((csom.get("som") or {}).get("6") or {}).get("100") or {}).get("wallclock_s"), 1),
         "NumCsiBest": F(_csi_b, 4),
         "NumCsiBestK": str(_csi_bk or "--"),
         "NumCsiAtKEight": F(((csom.get("csi") or {}).get("8") or {}).get("rre"), 4),
@@ -1235,6 +1356,19 @@ def main():
         "NumConsTwo", "NumConsBest", "NumConsBestK", "NumConsEight",
         "NumUncTwo", "NumUncBest", "NumUncBestK", "NumUncEight", "NumPriceDelta",
         "NumPriceDeltaLo", "NumPriceDeltaHi",
+        "NumPriceBudget", "NumPriceProjUnc", "NumPriceProjCons",
+        "NumFrBaseDsmRreLo", "NumFrBaseDsmRreHi",
+        "NumFrBaseDsmResLo", "NumFrBaseDsmResHi", "NumFrBaseDsmPeakHi",
+        "NumFrBaseBornRreLo", "NumFrBaseBornRreHi",
+        "NumFrBaseBornResLo", "NumFrBaseBornResHi",
+        "NumFrKernRreLo", "NumFrKernRreHi", "NumFrKernResLo", "NumFrKernResHi",
+        "NumBoxGb", "NumBoxEdge",
+        "NumBoxBetaSixty", "NumBoxBetaEighty", "NumBoxBetaHundred",
+        "NumBoxRreConsSixty", "NumBoxRreConsEighty", "NumBoxRreConsHundred",
+        "NumBoxRreUncSixty", "NumBoxRreUncEighty", "NumBoxRreUncHundred",
+        "NumBoxChiConsSixty", "NumBoxChiConsEighty", "NumBoxChiConsHundred",
+        "NumBoxChiUncSixty", "NumBoxChiUncEighty", "NumBoxChiUncHundred",
+        "NumBoxFinite", "NumBoxRuns",
         "NumDepDeltaArchPct", "NumDepDeltaUniPct", "NumDepDeltaUncUniPct",
         "NumDepUniConsSixteen", "NumDepUniConsTwentyFour",
         "NumDepUniDrift", "NumDepUniFloor",
@@ -1250,7 +1384,10 @@ def main():
         "NumLipRatioUncCons", "NumLipOverEps", "NumGdCompDeltaPct",
         "NumPhysWBlock", "NumPhysSigma", "NumSigCompCons", "NumSigCompUnc", "NumSigCompLayerCons", "NumSigCompLayerUnc",
         "NumSeedN", "NumSeedNCons", "NumSeedNUnc", "NumSeedNProjOff",
-        "NumSeedRreSdCons", "NumSeedRreSdUnc", "NumSeedChiConsMax", "NumSeedChiUncMax",
+        "NumSeedRreSdCons", "NumSeedRreSdUnc",
+        "NumSeedRreMeanCons", "NumSeedRreMeanUnc", "NumSeedRreMedCons", "NumSeedRreMedUnc",
+        "NumSeedRreHiCons", "NumSeedRreHiUnc", "NumSeedExMeanCons", "NumSeedExMeanUnc",
+        "NumSeedExSdCons", "NumSeedExSdUnc", "NumSeedChiConsMax", "NumSeedChiUncMax",
         "NumRepFloorMaxRre", "NumRepFloorMedRre", "NumRepFloorMaxExtrap", "NumRepNShared",
         "NumRepFiniteStable", "NumRepBoxStable",
         "NumSeedProjOffBox", "NumSeedFinite", "NumGdPhysSigma",
@@ -1287,6 +1424,7 @@ def main():
         "NumDfRelAImplLo", "NumDfRelAImplHi", "NumDfAbsAImplLo", "NumDfAbsAImplHi",
         "NumDfRelAFine",
         "NumSigAImpl", "NumSigBImpl", "NumSigmaFullImpl",
+        "NumCgFullMin", "NumCgFullMax", "NumCgFullFaithLo", "NumCgFullFaithHi",
         "NumLamRel", "NumNCg", "NumScaleRes", "NumLipResidChan", "NumFeatJointLip", "NumdEdChi",
         "NumFresnelPubRsM", "NumFresnelPubRrM", "NumFresnelPubNinc", "NumFresnelPubNrx",
         "NumFresnelPubGs", "NumFresnelPubBeta", "NumFresnelPubEpeak", "NumFresnelPubAlphaC",
@@ -1334,7 +1472,9 @@ def main():
     # paper_mdpi is a maintained submission tree (MDPI Mathematics) that cites the same
     # single-source macros; include it in the scan, otherwise macros cited only there
     # (e.g. the published-acquisition Fresnel quantities) are pruned as "never cited".
-    for paper in ("paper_en", "paper_cn", "paper_mdpi"):
+    # cmes_submission (TSP/CMES) is the third maintained submission tree; it cites
+    # the same single source, so it joins the union for the same reason.
+    for paper in ("paper_en", "paper_cn", "paper_mdpi", "cmes_submission"):
         fp = os.path.normpath(os.path.join(HERE, "..", paper, "main.tex"))
         if os.path.exists(fp):
             src += io.open(fp, encoding="utf-8").read()
@@ -1349,7 +1489,8 @@ def main():
               % (len(ren), ", ".join("%s->%s" % kv for kv in sorted(ren.items()))))
 
     out = "\n".join(rf"\newcommand{{\%s}}{{{v}}}" % k for k, v in macros.items()) + "\n"
-    for d, fn in [("..", "paper_en"), ("..", "paper_cn"), ("..", "paper_mdpi")]:
+    for d, fn in [("..", "paper_en"), ("..", "paper_cn"), ("..", "paper_mdpi"),
+                  ("..", "cmes_submission")]:
         target = os.path.normpath(os.path.join(HERE, d, fn, "numbers.tex"))
         with open(target, "w") as f:
             f.write(out)

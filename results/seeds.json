@@ -5,7 +5,9 @@
   "seeds": [
    1,
    11,
-   12
+   12,
+   13,
+   14
   ],
   "variants": [
    "constrained",
@@ -16,7 +18,7 @@
   "beta0": 0.8303174362082738,
   "device": "cuda",
   "test_set": "fixed seed=2, 100 samples",
-  "note": "r=0 reuses the main protocol's TRAINING-DATA seed (1), so the dataset is identical to the main run; the initialisation seed deliberately differs (100+r here against 1234 in the main pipeline), and r=1,2 change the training-data seed as well. This file is a protocol-variability replicate, NOT a decomposition of variability into components: an identical-seed re-run of this same driver on the identical code also moves the numbers, by an amount that is not small compared with the across-seed spread reported here (see results/repro_floor.json, measured between two runs of the identical driver). The across-seed standard deviation must therefore not be read as an error bar on this pipeline; the stable content of the replication is the pair of qualitative verdicts -- every run numerically finite, and the admissible-box verdict identical in every repeat."
+  "note": "r=0 reuses the main protocol's TRAINING-DATA seed (1), so the dataset is identical to the main run; the initialisation seed deliberately differs (100+r here against 1234 in the main pipeline), and r=1..4 change the training-data seed as well. Five repeats (data seeds 1, 11, 12, 13, 14) times three arms. This file is a protocol-variability replicate, NOT a decomposition of variability into components: an identical-seed re-run of this same driver on the identical code also moves the numbers, by an amount that is not small compared with the across-seed spread reported here (see results/repro_floor.json, measured between two runs of the identical driver). The across-seed standard deviation must therefore not be read as an error bar on this pipeline; the stable content of the replication is the pair of qualitative verdicts -- every run numerically finite, and the admissible-box verdict identical in every repeat. noise_sens_20dB uses the 20 dB complex-Gaussian protocol and the estimator of run_experiments.py (the source of noise.json and Fig. 8), with the noise realisation replayed so that the seed spread is comparable with the single-run headline value; an earlier build of this driver scored a fixed 5%-of-mean|y| perturbation on 50 samples under the same key name, which halved the number, and its values are not comparable with the present ones."
  },
  "runs": {
   "r0_constrained": {
@@ -35,7 +37,7 @@
     "maxabs_chi": 0.5,
     "finite": true
    },
-   "noise_sens_20dB": 0.07833439856767654
+   "noise_sens_20dB": 0.15268616378307343
   },
   "r0_unconstrained": {
    "variant": "unconstrained",
@@ -53,7 +55,7 @@
     "maxabs_chi": 0.5,
     "finite": true
    },
-   "noise_sens_20dB": 0.08126585185527802
+   "noise_sens_20dB": 0.16051261126995087
   },
   "r0_unc_projoff_fboff": {
    "variant": "unc_projoff_fboff",
@@ -71,7 +73,7 @@
     "maxabs_chi": 1.2587369680404663,
     "finite": true
    },
-   "noise_sens_20dB": 0.07937341183423996
+   "noise_sens_20dB": 0.15860161185264587
   },
   "r1_constrained": {
    "variant": "constrained",
@@ -89,7 +91,7 @@
     "maxabs_chi": 0.5,
     "finite": true
    },
-   "noise_sens_20dB": 0.07790107280015945
+   "noise_sens_20dB": 0.15484672784805298
   },
   "r1_unconstrained": {
    "variant": "unconstrained",
@@ -107,7 +109,7 @@
     "maxabs_chi": 0.5,
     "finite": true
    },
-   "noise_sens_20dB": 0.082176074385643
+   "noise_sens_20dB": 0.15547581017017365
   },
   "r1_unc_projoff_fboff": {
    "variant": "unc_projoff_fboff",
@@ -125,7 +127,7 @@
     "maxabs_chi": 0.989331841468811,
     "finite": true
    },
-   "noise_sens_20dB": 0.07420189678668976
+   "noise_sens_20dB": 0.14551448822021484
   },
   "r2_constrained": {
    "variant": "constrained",
@@ -143,7 +145,7 @@
     "maxabs_chi": 0.5,
     "finite": true
    },
-   "noise_sens_20dB": 0.07880711555480957
+   "noise_sens_20dB": 0.15720055997371674
   },
   "r2_unconstrained": {
    "variant": "unconstrained",
@@ -161,7 +163,7 @@
     "maxabs_chi": 0.5,
     "finite": true
    },
-   "noise_sens_20dB": 0.0810631513595581
+   "noise_sens_20dB": 0.15813033282756805
   },
   "r2_unc_projoff_fboff": {
    "variant": "unc_projoff_fboff",
@@ -179,64 +181,172 @@
     "maxabs_chi": 0.9935998320579529,
     "finite": true
    },
-   "noise_sens_20dB": 0.07814841717481613
+   "noise_sens_20dB": 0.1494685858488083
+  },
+  "r3_constrained": {
+   "variant": "constrained",
+   "config": {
+    "mode": "constrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 13,
+   "repeat": 3,
+   "rre_K8": 0.37295399606227875,
+   "extrap": {
+    "rre": 0.38695061206817627,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.15262433886528015
+  },
+  "r3_unconstrained": {
+   "variant": "unconstrained",
+   "config": {
+    "mode": "unconstrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 13,
+   "repeat": 3,
+   "rre_K8": 0.3449209928512573,
+   "extrap": {
+    "rre": 0.4659162759780884,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.15707989037036896
+  },
+  "r3_unc_projoff_fboff": {
+   "variant": "unc_projoff_fboff",
+   "config": {
+    "mode": "unconstrained",
+    "proj": false,
+    "featbound": false,
+    "eps_bar": 0.03
+   },
+   "seed": 13,
+   "repeat": 3,
+   "rre_K8": 0.3457956612110138,
+   "extrap": {
+    "rre": 0.8142633438110352,
+    "maxabs_chi": 0.8496983051300049,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.15935803949832916
+  },
+  "r4_constrained": {
+   "variant": "constrained",
+   "config": {
+    "mode": "constrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 14,
+   "repeat": 4,
+   "rre_K8": 0.36978623270988464,
+   "extrap": {
+    "rre": 0.38729289174079895,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.15345454216003418
+  },
+  "r4_unconstrained": {
+   "variant": "unconstrained",
+   "config": {
+    "mode": "unconstrained",
+    "proj": true,
+    "featbound": true,
+    "eps_bar": 0.03
+   },
+   "seed": 14,
+   "repeat": 4,
+   "rre_K8": 0.3338145762681961,
+   "extrap": {
+    "rre": 0.4393860995769501,
+    "maxabs_chi": 0.5,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.16126783192157745
+  },
+  "r4_unc_projoff_fboff": {
+   "variant": "unc_projoff_fboff",
+   "config": {
+    "mode": "unconstrained",
+    "proj": false,
+    "featbound": false,
+    "eps_bar": 0.03
+   },
+   "seed": 14,
+   "repeat": 4,
+   "rre_K8": 0.341839924454689,
+   "extrap": {
+    "rre": 0.5844933986663818,
+    "maxabs_chi": 1.005929708480835,
+    "finite": true
+   },
+   "noise_sens_20dB": 0.15350139141082764
   }
  },
  "summary": {
   "constrained": {
    "rre_K8": {
-    "mean": 0.3731868515412013,
-    "std": 0.0012727239360929405,
-    "n": 3
+    "mean": 0.37246015667915344,
+    "std": 0.0016635793729093697,
+    "n": 5
    },
    "noise_sens_20dB": {
-    "mean": 0.0783475289742152,
-    "std": 0.0003700069134447762,
-    "n": 3
+    "mean": 0.1541624665260315,
+    "std": 0.0017172471430338268,
+    "n": 5
    },
    "extrap_rre": {
-    "mean": 0.38807833194732666,
-    "n": 3
+    "mean": 0.38769569993019104,
+    "n": 5
    },
-   "extrap_finite_count": "3/3",
+   "extrap_finite_count": "5/5",
    "extrap_maxabs_chi_max": 0.5,
    "beta0_measured": 0.8303174362082738
   },
   "unconstrained": {
    "rre_K8": {
-    "mean": 0.3386134207248688,
-    "std": 0.0009528561082745883,
-    "n": 3
+    "mean": 0.33891516625881196,
+    "std": 0.003607850515248299,
+    "n": 5
    },
    "noise_sens_20dB": {
-    "mean": 0.08150169253349304,
-    "std": 0.00048398693826947134,
-    "n": 3
+    "mean": 0.1584932953119278,
+    "std": 0.0021452441451357213,
+    "n": 5
    },
    "extrap_rre": {
-    "mean": 0.4561530550320943,
-    "n": 3
+    "mean": 0.4547523081302643,
+    "n": 5
    },
-   "extrap_finite_count": "3/3",
+   "extrap_finite_count": "5/5",
    "extrap_maxabs_chi_max": 0.5,
    "beta0_measured": 0.8303174362082738
   },
   "unc_projoff_fboff": {
    "rre_K8": {
-    "mean": 0.3407648851474126,
-    "std": 0.005589066587262113,
-    "n": 3
+    "mean": 0.3419860482215881,
+    "std": 0.004748077863645292,
+    "n": 5
    },
    "noise_sens_20dB": {
-    "mean": 0.07724124193191528,
-    "std": 0.002206560998893784,
-    "n": 3
+    "mean": 0.15328882336616517,
+    "std": 0.00529416268705813,
+    "n": 5
    },
    "extrap_rre": {
-    "mean": 0.6666372219721476,
-    "n": 3
+    "mean": 0.679733681678772,
+    "n": 5
    },
-   "extrap_finite_count": "3/3",
+   "extrap_finite_count": "5/5",
    "extrap_maxabs_chi_max": 1.2587369680404663,
    "beta0_measured": 2.090302504327872
   }

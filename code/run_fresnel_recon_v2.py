@@ -197,25 +197,11 @@ def main():
 
     json.dump(rows, open(os.path.join(RES, "fresnel_recon_v2.json"), "w"),
               indent=1)
+    # Cached reconstructions for make_figs.fig_fresnel_recon.  The pipeline is
+    # fully deterministic (no RNG anywhere), so a rerun reproduces every number
+    # bit-for-bit; the rerun guard diffs the json against the archived copy.
+    np.savez(os.path.join(RES, "fresnel_recon_v2_recons.npz"), **recon_imgs)
 
-    # ---- 3x3 comparison figure ----
-    import matplotlib
-    matplotlib.use("Agg")
-    import matplotlib.pyplot as plt
-    fig, axes = plt.subplots(2, 3, figsize=(11, 6.5))
-    for j, t in enumerate(TARGETS):
-        Y = recon_imgs["%s_3" % t][1]
-        axes[0, j].imshow(Y, vmin=0, vmax=1, cmap="gray")
-        axes[0, j].set_title("truth %s" % t, fontsize=10)
-        axes[0, j].axis("off")
-        chi = recon_imgs["%s_3" % t][0]
-        axes[1, j].imshow(chi, vmin=0, vmax=1.0, cmap="gray")
-        axes[1, j].set_title("unrolled, f=3 GHz", fontsize=10)
-        axes[1, j].axis("off")
-    plt.tight_layout()
-    figpath = os.path.join(RES, "fresnel_recon_v2.png")
-    plt.savefig(figpath, dpi=110)
-    print("figure ->", figpath)
     print("[done] %.0fs" % (time.time() - t0))
 
 
