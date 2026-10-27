@@ -101,10 +101,18 @@ def main():
     # the mirror image of the same defect in _gate_mdpi.  The union MUST include paper_mdpi:
     # omitting it reproduces the very defect being fixed.  Per-tree orphans are kept as info.
     _union_src = ""
-    for paper in tuple(dict.fromkeys(tuple(PAPERS) + ("paper_mdpi", "cmes_submission"))):
-        _fp = os.path.join(ROOT, paper, "main.tex")
-        if os.path.exists(_fp):
-            _union_src += io.open(_fp, encoding="utf-8").read()
+    for paper in tuple(dict.fromkeys(tuple(PAPERS) + ("paper_mdpi", "cmes_submission",
+                                                     "mdpi_electronics"))):
+        _dir = os.path.join(ROOT, paper)
+        if not os.path.isdir(_dir):
+            continue
+        # Scan every *.tex in the tree, not just main.tex: a macro cited only by a
+        # supplementary file is still cited.  Deciding "dead" on main.tex alone flagged
+        # \NumCgFullMin/Max as dead while mdpi_electronics/supplementary.tex printed them --
+        # the same single-filename defect that once pruned them out of numbers.tex.
+        for _fn in sorted(os.listdir(_dir)):
+            if _fn.endswith(".tex") and _fn != "numbers.tex":
+                _union_src += io.open(os.path.join(_dir, _fn), encoding="utf-8").read()
     macros_orphans = {}
     for paper in PAPERS:
         nums = defines(os.path.join(ROOT, paper, "numbers.tex"))

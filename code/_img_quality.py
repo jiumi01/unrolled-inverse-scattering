@@ -45,8 +45,15 @@ def _psnr(a, b, data_range):
 
 
 def _ssim(a, b, data_range, sigma=1.5, truncate=3.5):
-    """Wang et al. (2004) SSIM, Gaussian window, sample covariance (K1=K2=0.01)."""
-    K1, K2 = 0.01, 0.02
+    """Wang et al. (2004) SSIM, Gaussian window, K1=0.01 and K2=0.03.
+
+    The moments are the *weighted population* moments returned by a normalised
+    Gaussian filter (E[a^2] - (E[a])^2), not the unbiased sample estimates; the
+    filter is applied with reflected borders.  An earlier revision of this file
+    used K2 = 0.02, which is not Wang's constant and disagreed with the SSIM
+    values printed in the manuscript; it is now the canonical 0.03.
+    """
+    K1, K2 = 0.01, 0.03
     C1 = (K1 * data_range) ** 2
     C2 = (K2 * data_range) ** 2
     mu_a = gaussian_filter(a, sigma, truncate=truncate, mode="reflect")
@@ -112,8 +119,10 @@ def main():
            "protocol": ("the %d examples displayed in Fig. images, i.e. chi_te_d[0:4]; "
                         "these are NOT the full test set (100) over which every RRE in the "
                         "manuscript is computed -- see imgq_protocol.json" % n_ex),
-           "ssim_impl": "gaussian sigma=1.5 truncate=3.5, K1=0.01 K2=0.02, mean over pixels",
-           "psnr_impl": "10log10(data_range^2/MSE)",
+           "ssim_impl": ("wang2004 gaussian sigma=1.5 truncate=3.5 reflect borders, "
+                         "weighted population moments, K1=0.01 K2=0.03, "
+                         "mean over pixels then over examples"),
+           "psnr_impl": "10log10(data_range^2/MSE), mean over pixels, then mean over examples in dB",
            "rows": {}}
 
     print("data_range = %.6f   n_examples = %d" % (data_range, n_ex))

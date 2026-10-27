@@ -1474,10 +1474,25 @@ def main():
     # (e.g. the published-acquisition Fresnel quantities) are pruned as "never cited".
     # cmes_submission (TSP/CMES) is the third maintained submission tree; it cites
     # the same single source, so it joins the union for the same reason.
-    for paper in ("paper_en", "paper_cn", "paper_mdpi", "cmes_submission"):
-        fp = os.path.normpath(os.path.join(HERE, "..", paper, "main.tex"))
-        if os.path.exists(fp):
-            src += io.open(fp, encoding="utf-8").read()
+    # mdpi_electronics (MDPI Electronics) is the fourth: leaving it out would prune any
+    # macro cited only there and break that tree at the next regeneration.
+    #
+    # Scan EVERY .tex of each tree, not just main.tex.  The supplement is part of the
+    # submission and prints its own numbers; a macro cited only there is still cited.
+    # Restricting the scan to main.tex silently deleted \NumCgFullMin/Max, which the
+    # electronics supplement prints in its runtime table, and only the supplement
+    # failed to compile -- the main text was byte-identical, so no other check noticed.
+    # numbers.tex is skipped: it *defines* every macro, so scanning it would make the
+    # prune a no-op.
+    for paper in ("paper_en", "paper_cn", "paper_mdpi", "cmes_submission",
+                  "mdpi_electronics"):
+        d = os.path.normpath(os.path.join(HERE, "..", paper))
+        if not os.path.isdir(d):
+            continue
+        for fn in sorted(os.listdir(d)):
+            if not fn.endswith(".tex") or fn == "numbers.tex":
+                continue
+            src += io.open(os.path.join(d, fn), encoding="utf-8").read()
     import re as _re
     dead = [k for k in macros if not _re.search(r"\\%s(?![A-Za-z])" % k, src)]
     for k in dead:
@@ -1490,7 +1505,7 @@ def main():
 
     out = "\n".join(rf"\newcommand{{\%s}}{{{v}}}" % k for k, v in macros.items()) + "\n"
     for d, fn in [("..", "paper_en"), ("..", "paper_cn"), ("..", "paper_mdpi"),
-                  ("..", "cmes_submission")]:
+                  ("..", "cmes_submission"), ("..", "mdpi_electronics")]:
         target = os.path.normpath(os.path.join(HERE, d, fn, "numbers.tex"))
         with open(target, "w") as f:
             f.write(out)

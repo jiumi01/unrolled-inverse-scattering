@@ -3,9 +3,14 @@
 import re, subprocess, os, sys
 
 HERE = os.path.dirname(os.path.abspath(__file__))
-C = os.path.join(HERE, "..", "cmes_submission")
-aux = open(os.path.join(C, "main.aux"), "r", encoding="utf8", errors="ignore").read()
-pdf = os.path.join(C, sys.argv[1]) if len(sys.argv) > 1 else os.path.join(C, "main.pdf")
+ROOT = os.path.join(HERE, "..")
+# 传参则按 pdf 所在目录取 aux（支持任意树）；不传则默认 cmes_submission。
+pdf = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "cmes_submission", "main.pdf")
+if not os.path.isabs(pdf):
+    pdf = os.path.abspath(pdf)
+assert os.path.exists(pdf), "pdf not found: %s" % pdf
+aux = open(os.path.join(os.path.dirname(pdf), "main.aux"), "r",
+           encoding="utf8", errors="ignore").read()
 
 def grab(s, i):
     """s[i] == '{' ；返回 (内容, 结束后下标)，支持嵌套花括号。"""

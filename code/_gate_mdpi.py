@@ -93,10 +93,17 @@ def main():
     # single-tree rule reported every EN/CN-only macro as a failure -- a gate defect, not a
     # manuscript defect.  Per-tree orphan counts are still printed below, as information.
     _all_src = ""
-    for _pp in ("paper_en", "paper_cn", "paper_mdpi"):
-        _fp = os.path.join(ROOT, _pp, "main.tex")
-        if os.path.exists(_fp):
-            _all_src += io.open(_fp, encoding="utf-8").read()
+    # The union must be the whole DELIVERY set, and a tree is more than its main.tex: a macro
+    # cited only by supplementary.tex is cited.  Scanning main.tex alone (and only three trees)
+    # reported 43 live macros as dead -- the mirror image of the defect that once pruned
+    # \NumCgFullMin/Max out of numbers.tex.
+    for _pp in ("paper_en", "paper_cn", "paper_mdpi", "cmes_submission", "mdpi_electronics"):
+        _dir = os.path.join(ROOT, _pp)
+        if not os.path.isdir(_dir):
+            continue
+        for _fn in sorted(os.listdir(_dir)):
+            if _fn.endswith(".tex") and _fn != "numbers.tex":
+                _all_src += io.open(os.path.join(_dir, _fn), encoding="utf-8").read()
     macros_dead = sorted(m for m in nums
                          if not re.search(r"\\%s(?![A-Za-z])" % m, _all_src))
     orphans_here = sorted(m for m in nums

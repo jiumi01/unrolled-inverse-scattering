@@ -180,10 +180,16 @@ def fig_structure():
     cmes_submission/main.tex at the same time.
     """
     set_style()
-    W, H = 6.50, 3.06          # reference box in inches (CMES text width)
+    # The drawing is laid out on a 6.50-in coordinate grid (COORD_W) and the
+    # canvas is the target text block.  When COORD_W > W the grid is compressed
+    # horizontally while the font sizes stay at their authored values, which is
+    # what keeps the type legible at \linewidth = 1.0; tfit() below compensates
+    # for the compression when it shrinks a string that would not fit.
+    COORD_W = 6.50
+    W, H = TEXTW, 3.06
     fig = plt.figure(figsize=(W, H))
     ax = fig.add_axes([0.0, 0.0, 1.0, 1.0])
-    ax.set_xlim(0, W)
+    ax.set_xlim(0, COORD_W)
     ax.set_ylim(0.09, 0.09 + H)
     ax.axis("off")
 
@@ -266,13 +272,18 @@ def fig_structure():
          1.74, 7.9, zorder=4)
 
     # states and data flow
-    for x, y, s, ch in [(0.20, 1.88, r"$\chi^{k}$", "contrast"),
-                        (0.20, 0.62, r"$w^{k}$", "field"),
-                        (3.94, 1.88, r"$\chi^{k+1}$", "contrast"),
-                        (3.94, 0.62, r"$w^{k+1}$", "field")]:
+    # The channel names are given once, on the input side.  Repeating them under
+    # the output states collided with the block-map row labels once the drawing
+    # was compressed to the text block, and the row labels already name those
+    # channels.
+    for x, y, s, ch in [(0.30, 1.88, r"$\chi^{k}$", "contrast"),
+                        (0.30, 0.62, r"$w^{k}$", "field"),
+                        (3.94, 1.88, r"$\chi^{k+1}$", None),
+                        (3.94, 0.62, r"$w^{k+1}$", None)]:
         ax.text(x, y, s, fontsize=11.9, ha="center", va="center")
-        ax.text(x, y - 0.22, ch, fontsize=8.0, ha="center", va="center",
-                color=MUT)
+        if ch:
+            ax.text(x, y - 0.22, ch, fontsize=8.0, ha="center", va="center",
+                    color=MUT)
 
     arrow((0.355, 1.88), (0.455, 1.88))
     arrow((2.325, 1.88), (2.435, 1.88))
@@ -296,7 +307,7 @@ def fig_structure():
     # ---- block map of the layer Jacobian --------------------------------
     ax.text(4.30, 2.96, r"layer Jacobian $DT_{k}$", fontsize=9.9, ha="left",
             va="top")
-    xs = [5.16, 5.80, 6.44]
+    xs = [4.60, 5.44, 6.28]
     ys = [1.36, 1.90, 2.44]
     cells = [(0, 1, r"$A$", C_REC, "recorded"),
              (1, 1, r"$B$", C_REC, "recorded"),
@@ -314,8 +325,8 @@ def fig_structure():
 
     # rows = channels leaving the layer, columns = channels entering it
     for yc, s in [(2.17, r"$\delta\chi^{k+1}$"), (1.63, r"$\delta w^{k+1}$")]:
-        ax.text(5.10, yc, s, fontsize=10.8, ha="right", va="center")
-    for xc, s in [(5.48, r"$\delta\chi^{k}$"), (6.12, r"$\delta w^{k}$")]:
+        ax.text(4.54, yc, s, fontsize=10.8, ha="right", va="center")
+    for xc, s in [(5.02, r"$\delta\chi^{k}$"), (5.86, r"$\delta w^{k}$")]:
         ax.text(xc, 2.52, s, fontsize=10.8, ha="center", va="bottom")
 
     ax.text(4.30, 1.14, r"$C=\theta\alpha\,\mathrm{diag}(E)$", fontsize=8.4,
@@ -559,6 +570,12 @@ def fig_gain():
            linewidth=0.6, label="Constrained")
     ax.bar(x + bw / 2, gain["unconstrained"], bw, color=OKABE_ITO[6], edgecolor="k",
            linewidth=0.6, label="Unconstrained")
+    # The text asserts that both variants exceed one at every layer, so the unit
+    # level is drawn to make that assertion checkable by eye.  It sits above the
+    # bars in zorder: a reference line drawn behind the fill is visible only in
+    # the gaps between bars.
+    ax.axhline(1.0, color=GREY_LINE, lw=0.7, ls=(0, (5, 3)), zorder=3,
+               label="Unity gain")
     # Value on every bar: with two series per layer the reader cannot recover the
     # numbers from the axis, and the text quotes individual layers.
     for xi, v in zip(x - bw / 2, gain["constrained"]):
@@ -570,7 +587,7 @@ def fig_gain():
     ax.set_ylabel("Measured layer gain")
     # Headroom so the legend sits above every bar and the labels stay inside the frame.
     ax.set_ylim(0, max(max(gain["constrained"]), max(gain["unconstrained"])) * 1.34)
-    ax.legend(loc="upper center", ncol=2)
+    ax.legend(loc="upper center", ncol=3)
     style_ax(ax)
     save(fig, "fig_gain")
 
