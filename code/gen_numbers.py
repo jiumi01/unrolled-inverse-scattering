@@ -246,6 +246,17 @@ def main():
 
     sens_cons = (noise.get("constrained") or {}).get("20", {}).get("sens")
     sens_unc = (noise.get("unconstrained") or {}).get("20", {}).get("sens")
+    # R3 #6: the sensitivity gap changes sign across SNR, so the paper quotes
+    # both the 20 dB and 30 dB reductions instead of a blanket "no advantage".
+    _sc30 = (noise.get("constrained") or {}).get("30", {}).get("sens")
+    _su30 = (noise.get("unconstrained") or {}).get("30", {}).get("sens")
+
+    def _pct_less(c, u):
+        """Percent by which the constrained arm is less sensitive than the unconstrained one."""
+        return None if not c or not u else 100.0 * (u - c) / u
+
+    noise_gain20 = _pct_less(sens_cons, sens_unc)
+    noise_gain30 = _pct_less(_sc30, _su30)
 
     def gd_get(path):
         cur = gd
@@ -884,6 +895,8 @@ def main():
         # noise
         "NumSensCons": F(sens_cons),
         "NumSensUnc": F(sens_unc),
+        "NumNoiseGainTwenty": F(noise_gain20, 1),
+        "NumNoiseGainThirty": F(noise_gain30, 1),
         # spectral decomposition (Table cert)
         # measured sigma_max(alpha) range from the CONVERGED alpha sweep (ngc.json).
         # The n_cg=15 sweep returns 4.39--20.16 on the same grid; that spread is the
@@ -1380,6 +1393,7 @@ def main():
         "NumGdPhysSigmaSp", "NumGdRatioSp", "NumGdRatioNcg", "NumGdRatioNet", "NumGdVsAuditPct",
         "NumBjacVsGdPct",
         "NumSensCons", "NumSensUnc",
+        "NumNoiseGainTwenty", "NumNoiseGainThirty",
         "NumSigMin", "NumSigMax", "LipHUnc", "NumLipHCons", "NumLipHUnc",
         "NumLipRatioUncCons", "NumLipOverEps", "NumGdCompDeltaPct",
         "NumPhysWBlock", "NumPhysSigma", "NumSigCompCons", "NumSigCompUnc", "NumSigCompLayerCons", "NumSigCompLayerUnc",
