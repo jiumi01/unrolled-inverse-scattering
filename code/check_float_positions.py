@@ -9,8 +9,19 @@ pdf = sys.argv[1] if len(sys.argv) > 1 else os.path.join(ROOT, "cmes_submission"
 if not os.path.isabs(pdf):
     pdf = os.path.abspath(pdf)
 assert os.path.exists(pdf), "pdf not found: %s" % pdf
-aux = open(os.path.join(os.path.dirname(pdf), "main.aux"), "r",
-           encoding="utf8", errors="ignore").read()
+# aux 必须与 pdf 同名（main_cn.pdf -> main_cn.aux）；曾写死 main.aux，
+# 对中文稿会读英文 aux，页码全错且 refs 全空（假红）。
+auxname = os.path.splitext(os.path.basename(pdf))[0] + ".aux"
+auxpath = os.path.join(os.path.dirname(pdf), auxname)
+assert os.path.exists(auxpath), "aux not found: %s" % auxpath
+aux = open(auxpath, "r", encoding="utf8", errors="ignore").read()
+
+# 标签前缀：中文稿用 图/表（本稿已 renew \figurename/\tablename）。
+# 由文件名判定，或第三个参数显式给 cn/en。
+lang = sys.argv[2] if len(sys.argv) > 2 else ("cn" if "_cn" in os.path.basename(pdf) else "en")
+KW = {"Fig": "图" if lang == "cn" else "Fig(?:ure)?",
+      "Table": "表" if lang == "cn" else "Table"}
+
 
 def grab(s, i):
     """s[i] == '{' ；返回 (内容, 结束后下标)，支持嵌套花括号。"""
@@ -29,6 +40,8 @@ lab = {}
 for m in re.finditer(r"\\newlabel\{", aux):
     i = m.end() - 1
     key, i = grab(aux, i)
+    if "@cref" in key:      # cleveref 的重写条目：{num}{num}...，页码位不可用
+        continue
     while aux[i] in " \n":
         i += 1
     body, _ = grab(aux, i)          # {{num}{page}...}
@@ -46,12 +59,20 @@ for m in re.finditer(r"\\newlabel\{", aux):
 txt = subprocess.run(["pdftotext", "-layout", pdf, "-"], capture_output=True, text=True,
                      encoding="utf8", errors="ignore").stdout
 pages = txt.split("\f")
+npage = len([p for p in pages if p.strip()])
+# aux 与 pdf 必须同源：aux 里出现超出 pdf 总页数的页码，说明读错了 aux。
+over = [(k, v[1]) for k, v in lab.items() if v[1] > npage]
+assert not over, "aux/pdf mismatch: labels beyond page %d -> %s" % (npage, over[:5])
 
 def refs(num, kind):
     out = []
-    kw = "Fig(?:ure)?" if kind == "Fig" else "Table"
-    pat = re.compile(r"\b%s\.?\s*~?\s*%s\b" % (kw, re.escape(num)))
-    cap = re.compile(r"^\s*%s\s*%s[:.]" % (kw, re.escape(num)))
+    kw = KW[kind]
+    if lang == "cn":
+        # CJK 是 \w，前后加 \b 会失效（"图~5与" 里 5\b 不成立），改用数字负前瞻。
+        pat = re.compile(r"%s\s*~?\s*%s(?!\d)" % (kw, re.escape(num)))
+    else:
+        pat = re.compile(r"\b%s\.?\s*~?\s*%s\b" % (kw, re.escape(num)))
+    cap = re.compile(r"^\s*%s\s*%s[:.．]" % (kw, re.escape(num)))
     for i, p in enumerate(pages, 1):
         for line in p.splitlines():
             if cap.match(line):
